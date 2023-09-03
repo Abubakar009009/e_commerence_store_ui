@@ -1,5 +1,6 @@
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
+import 'package:e_commerence_store_ui/utils/common_functions.dart';
 import 'package:e_commerence_store_ui/views/screen_12.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,6 +45,10 @@ class _Screen11State extends State<Screen11> {
                         fontWeight: FontWeight.w600),
                   ),
                   Expanded(child: SizedBox()),
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.transparent,
+                  ),
                 ],
               ),
               SizedBox(
@@ -120,10 +125,10 @@ class _Screen11State extends State<Screen11> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               Text(
-                'Star',
+                AppStrings.starText,
                 style: TextStyle(
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                     fontWeight: FontWeight.w500),
@@ -131,7 +136,7 @@ class _Screen11State extends State<Screen11> {
               Row(
                 children: [
                   Text(
-                    '0.0',
+                    AppStrings.minStarValue,
                     style: TextStyle(
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.04,
                         fontWeight: FontWeight.w500),
@@ -146,7 +151,7 @@ class _Screen11State extends State<Screen11> {
                         }),
                   ),
                   Text(
-                    '5.0',
+                    AppStrings.maxStarValue,
                     style: TextStyle(
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.04,
                         fontWeight: FontWeight.w500),
@@ -157,16 +162,11 @@ class _Screen11State extends State<Screen11> {
           ),
         ),
       ),
-      bottomSheet: CustomButtomButton(
+      bottomSheet: CustomBottomButton(
           onTab: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Screen12(
-                          listofproducts: AppConstants.productsList,
-                        )));
+            CommonFunctions.reviewAdded(context);
           },
-          text: 'Submit Review'),
+          text: AppStrings.submitReview),
     );
   }
 }

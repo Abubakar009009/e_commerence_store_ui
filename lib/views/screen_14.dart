@@ -1,3 +1,4 @@
+import 'package:e_commerence_store_ui/utils/common_functions.dart';
 import 'package:e_commerence_store_ui/views/screen_13.dart/textfield.dart';
 import 'package:e_commerence_store_ui/views/screen_15.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 
 import '../utils/app_colors.dart';
+import '../utils/app_strings.dart';
 import '../utils/media_query.dart';
 import '../widgets/back_custom_middle.dart';
 import '../widgets/custom_bottom_buttons.dart';
@@ -36,14 +38,21 @@ class _Screen14State extends State<Screen14> {
                   const BackCustomMiddle(),
                   const Expanded(child: SizedBox()),
                   Text(
-                    'Payment',
+                    AppStrings.payment,
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w600),
                   ),
                   Expanded(child: SizedBox()),
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.transparent,
+                  ),
                 ],
+              ),
+              SizedBox(
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               CreditCardWidget(
                 width: GetScreenSize.getScreenWidth(context) * 0.9,
@@ -58,68 +67,74 @@ class _Screen14State extends State<Screen14> {
                     (CreditCardBrand) {}, // To show the card's back view
               ),
               SizedBox(
-                height: GetScreenSize.getScreenWidth(context) * 0.03,
-              ),
-              Container(
-                  height: 60,
-                  width: GetScreenSize.getScreenWidth(context) * 0.9,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.appPurpleColor),
-                    color: AppColors.appGreyBackground,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Center(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add_circle_outline,
-                        color: AppColors.appPurpleColor,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Add new Card',
-                        style: TextStyle(
-                            fontSize:
-                                GetScreenSize.getScreenWidth(context) * 0.04,
-                            color: AppColors.appPurpleColor,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ))),
-              SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
-              Text(
-                'Card Owner',
-                style: TextStyle(
-                    fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
-                    fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: GetScreenSize.getScreenWidth(context) * 0.03,
-              ),
-              TextFieldCustom(
-                width: GetScreenSize.getScreenWidth(context) * 0.9,
-                hintText: 'Mrh Raju',
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Screen15()));
+                },
+                child: Container(
+                    height: 60,
+                    width: GetScreenSize.getScreenWidth(context) * 0.9,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.appPurpleColor),
+                      color: AppColors.appGreyBackground,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_circle_outline,
+                          color: AppColors.appPurpleColor,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          AppStrings.addNewCard,
+                          style: TextStyle(
+                              fontSize:
+                                  GetScreenSize.getScreenWidth(context) * 0.04,
+                              color: AppColors.appPurpleColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ))),
               ),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               Text(
-                'Card Number',
+                AppStrings.cardOwner,
                 style: TextStyle(
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                     fontWeight: FontWeight.w500),
               ),
               SizedBox(
-                height: GetScreenSize.getScreenWidth(context) * 0.03,
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               TextFieldCustom(
                 width: GetScreenSize.getScreenWidth(context) * 0.9,
-                hintText: '5254 7634 8734 7690',
+                hintText: AppStrings.nameHint,
+              ),
+              SizedBox(
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
+              ),
+              Text(
+                AppStrings.cardNumber,
+                style: TextStyle(
+                    fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
+                    fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
+              ),
+              TextFieldCustom(
+                width: GetScreenSize.getScreenWidth(context) * 0.9,
+                hintText: AppStrings.cardHint,
               ),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
@@ -131,18 +146,18 @@ class _Screen14State extends State<Screen14> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'EXP',
+                        AppStrings.cardExpire,
                         style: TextStyle(
                             fontSize:
                                 GetScreenSize.getScreenWidth(context) * 0.045,
                             fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: GetScreenSize.getScreenWidth(context) * 0.05,
                       ),
                       TextFieldCustom(
                         width: GetScreenSize.getScreenWidth(context) * 0.4,
-                        hintText: '24/24',
+                        hintText: AppStrings.cardExpireHint,
                       )
                     ],
                   ),
@@ -150,18 +165,18 @@ class _Screen14State extends State<Screen14> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'CVV',
+                        AppStrings.cardCvv,
                         style: TextStyle(
                             fontSize:
                                 GetScreenSize.getScreenWidth(context) * 0.045,
                             fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: GetScreenSize.getScreenWidth(context) * 0.05,
                       ),
                       TextFieldCustom(
                         width: GetScreenSize.getScreenWidth(context) * 0.4,
-                        hintText: '7763',
+                        hintText: AppStrings.cardCvvHint,
                       )
                     ],
                   )
@@ -174,7 +189,7 @@ class _Screen14State extends State<Screen14> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Save card info',
+                    AppStrings.saveCardInfo,
                     style: TextStyle(
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                         fontWeight: FontWeight.w500),
@@ -195,12 +210,11 @@ class _Screen14State extends State<Screen14> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomButtomButton(
+      bottomNavigationBar: CustomBottomButton(
           onTab: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Screen15()));
+            CommonFunctions.cardAdded(context);
           },
-          text: 'Save Card'),
+          text: AppStrings.saveCard),
     );
   }
 }

@@ -1,10 +1,16 @@
+import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/views/screen_13.dart/screen_13.dart';
+import 'package:e_commerence_store_ui/views/screen_14.dart';
+import 'package:e_commerence_store_ui/views/screen_16.dart';
 import 'package:e_commerence_store_ui/widgets/cart_product.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
+import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../models/products_model.dart';
+import '../utils/app_strings.dart';
 import '../utils/media_query.dart';
 import '../widgets/back_custom_middle.dart';
 
@@ -35,19 +41,23 @@ class _Screen12State extends State<Screen12> {
                   const BackCustomMiddle(),
                   const Expanded(child: SizedBox()),
                   Text(
-                    'Cart',
+                    AppStrings.cartText,
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w600),
                   ),
                   Expanded(child: SizedBox()),
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.transparent,
+                  ),
                 ],
               ),
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 2,
+                itemCount: 1,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -61,23 +71,29 @@ class _Screen12State extends State<Screen12> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Delivery Address',
+                    AppStrings.deliveryText,
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w500),
                   ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: GetScreenSize.getScreenWidth(context) * 0.06,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Screen13()));
+                    },
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      size: GetScreenSize.getScreenWidth(context) * 0.06,
+                    ),
                   )
                 ],
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: Image.asset('assets/images/Rectangle 584.jpg'),
+                leading: Image.asset(AppAssets.locationImage),
                 title: Text(
-                  'Chhatak, Sunamgonj 12/8AB',
+                  AppStrings.addressText,
                   textScaleFactor: 1,
                   style: TextStyle(
                       fontSize: GetScreenSize.getScreenWidth(context) * 0.04,
@@ -90,7 +106,7 @@ class _Screen12State extends State<Screen12> {
                   size: GetScreenSize.getScreenWidth(context) * 0.09,
                 ),
                 subtitle: Text(
-                  'Sylhet',
+                  AppStrings.addressCity,
                   style: TextStyle(
                       color: AppColors.appGreyText,
                       fontSize: GetScreenSize.getScreenWidth(context) * 0.04),
@@ -104,21 +120,27 @@ class _Screen12State extends State<Screen12> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Payment Method',
+                    AppStrings.paymentMethod,
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w500),
                   ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: GetScreenSize.getScreenWidth(context) * 0.06,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Screen14()));
+                    },
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      size: GetScreenSize.getScreenWidth(context) * 0.06,
+                    ),
                   )
                 ],
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: Image.asset('assets/images/visa.png'),
+                leading: Image.asset(AppAssets.visaImage),
                 title: Text(
                   'Visa Classic',
                   textScaleFactor: 1,
@@ -141,7 +163,7 @@ class _Screen12State extends State<Screen12> {
                 selected: true,
               ),
               Text(
-                'Order Info',
+                AppStrings.orderInfoTitle,
                 style: TextStyle(
                     color: AppColors.appBlackText,
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
@@ -151,7 +173,7 @@ class _Screen12State extends State<Screen12> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Sub Total',
+                    AppStrings.subTotal,
                     style: TextStyle(
                         color: AppColors.appGreyText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.040,
@@ -170,7 +192,7 @@ class _Screen12State extends State<Screen12> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Shipping Cost',
+                    AppStrings.shippingCost,
                     style: TextStyle(
                         color: AppColors.appGreyText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.040,
@@ -189,7 +211,7 @@ class _Screen12State extends State<Screen12> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total',
+                    AppStrings.total,
                     style: TextStyle(
                         color: AppColors.appGreyText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.040,
@@ -200,20 +222,41 @@ class _Screen12State extends State<Screen12> {
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.050,
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.bold),
                   )
                 ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              // Center(
+              //   child: CustomTextButton(
+              //       onTab: () {},
+              //       buttonText: 'Check Out',
+              //       buttonColor: AppColors.appPurpleColor,
+              //       height: 75,
+              //       width: GetScreenSize.getScreenWidth(context) * 0.6,
+              //       radius: 10,
+              //       fontSize: GetScreenSize.getScreenWidth(context) * 0.05),
+              // ),
+              CustomTextButton(
+                onTab: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Screen16()));
+                },
+                buttonText: 'Check Out',
+                buttonColor: AppColors.appPurpleColor,
+                radius: 15,
+                fontSize: 17,
+                fontColor: AppColors.AppWhiteColor,
+                // addIcon: true,
+                //icon: const FaIcon(FontAwesomeIcons.facebook),
+                height: MediaQuery.of(context).size.height * 0.070,
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: CustomButtomButton(
-          onTab: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Screen13()));
-          },
-          text: 'Checkout'),
     );
   }
 }

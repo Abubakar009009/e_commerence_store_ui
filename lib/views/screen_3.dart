@@ -82,7 +82,7 @@ class _Screen3State extends State<Screen3> {
                             CupertinoSwitch(
                               activeColor: AppColors.switchGreen,
                               thumbColor: AppColors.AppWhiteColor,
-                              trackColor: AppColors.appBlackText,
+                              trackColor: AppColors.appGreyBackground,
                               value: forIos,
                               onChanged: (value) =>
                                   setState(() => forIos = value),
@@ -98,7 +98,7 @@ class _Screen3State extends State<Screen3> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomButtomButton(
+      bottomNavigationBar: CustomBottomButton(
         onTab: () {
           if (CommonFunctions.checkSignup(context)) {
             Navigator.pushReplacement(context,

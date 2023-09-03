@@ -1,15 +1,14 @@
+import 'package:e_commerence_store_ui/utils/common_functions.dart';
 import 'package:e_commerence_store_ui/views/screen_13.dart/textfield.dart';
 import 'package:e_commerence_store_ui/views/screen_14.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
-import '../../utils/app_constants.dart';
 import '../../utils/app_strings.dart';
 import '../../utils/media_query.dart';
 import '../../widgets/back_custom_middle.dart';
 import '../../widgets/custom_bottom_buttons.dart';
-import '../screen_12.dart';
 
 class Screen13 extends StatefulWidget {
   const Screen13({super.key});
@@ -39,13 +38,17 @@ class _Screen13State extends State<Screen13> {
                   const BackCustomMiddle(),
                   const Expanded(child: SizedBox()),
                   Text(
-                    'Address',
+                    AppStrings.address,
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w600),
                   ),
                   Expanded(child: SizedBox()),
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.transparent,
+                  ),
                 ],
               ),
               SizedBox(
@@ -62,7 +65,7 @@ class _Screen13State extends State<Screen13> {
               ),
               TextFieldCustom(
                 width: GetScreenSize.getScreenWidth(context) * 0.9,
-                hintText: 'Mrh Raju',
+                hintText: AppStrings.namehint,
               ),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
@@ -74,18 +77,18 @@ class _Screen13State extends State<Screen13> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Country',
+                        AppStrings.country,
                         style: TextStyle(
                             fontSize:
                                 GetScreenSize.getScreenWidth(context) * 0.045,
                             fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: GetScreenSize.getScreenWidth(context) * 0.05,
                       ),
                       TextFieldCustom(
                         width: GetScreenSize.getScreenWidth(context) * 0.4,
-                        hintText: 'Bangladesh',
+                        hintText: AppStrings.countryhint,
                       )
                     ],
                   ),
@@ -93,18 +96,18 @@ class _Screen13State extends State<Screen13> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'City',
+                        AppStrings.city,
                         style: TextStyle(
                             fontSize:
                                 GetScreenSize.getScreenWidth(context) * 0.045,
                             fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: GetScreenSize.getScreenWidth(context) * 0.05,
                       ),
                       TextFieldCustom(
                         width: GetScreenSize.getScreenWidth(context) * 0.4,
-                        hintText: 'Sylhet',
+                        hintText: AppStrings.cityName,
                       )
                     ],
                   )
@@ -114,32 +117,32 @@ class _Screen13State extends State<Screen13> {
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               Text(
-                'Phone Number',
+                AppStrings.phoneNumber,
                 style: TextStyle(
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                     fontWeight: FontWeight.w500),
               ),
               SizedBox(
-                height: GetScreenSize.getScreenWidth(context) * 0.03,
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               TextFieldCustom(
                   width: GetScreenSize.getScreenWidth(context) * 0.9,
-                  hintText: '+92 310 4438423'),
+                  hintText: AppStrings.phoneNumberHint),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               Text(
-                'Address',
+                AppStrings.address,
                 style: TextStyle(
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                     fontWeight: FontWeight.w500),
               ),
               SizedBox(
-                height: GetScreenSize.getScreenWidth(context) * 0.03,
+                height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               TextFieldCustom(
                   width: GetScreenSize.getScreenWidth(context) * 0.9,
-                  hintText: 'Chhatak, Sunamgonj 12/8AB'),
+                  hintText: AppStrings.addressText),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
@@ -147,7 +150,7 @@ class _Screen13State extends State<Screen13> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Save as primary address',
+                    AppStrings.saveAsPrimary,
                     style: TextStyle(
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                         fontWeight: FontWeight.w500),
@@ -165,12 +168,14 @@ class _Screen13State extends State<Screen13> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomButtomButton(
+      bottomNavigationBar: CustomBottomButton(
           onTab: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Screen14()));
+            CommonFunctions.addressAdded(context);
+
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => Screen14()));
           },
-          text: 'Save Address'),
+          text: AppStrings.saveAddress),
     );
   }
 }

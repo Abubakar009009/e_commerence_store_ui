@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
+import '../utils/common_functions.dart';
 import '../widgets/custom_bottom_buttons.dart';
 
 class Screen9 extends StatefulWidget {
@@ -53,8 +54,9 @@ class _Screen9State extends State<Screen9> {
                     ),
                   ),
                   Positioned(
-                      top: GetScreenSize.getScreenWidth(context) * 0.17,
-                      child: BackCustom()),
+                    top: GetScreenSize.getScreenWidth(context) * 0.17,
+                    child: BackCustom(),
+                  ),
                   Positioned(
                       top: GetScreenSize.getScreenWidth(context) * 0.17,
                       right: GetScreenSize.getScreenWidth(context) * 0.05,
@@ -326,14 +328,24 @@ class _Screen9State extends State<Screen9> {
                                   color: AppColors.appBlackText,
                                   fontWeight: FontWeight.w600),
                             ),
-                            Text(
-                              AppStrings.viewAll,
-                              style: TextStyle(
-                                  fontSize:
-                                      GetScreenSize.getScreenWidth(context) *
-                                          0.045,
-                                  color: AppColors.appGreyText,
-                                  fontWeight: FontWeight.w400),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Screen10(
+                                              list: widget.object.reviews,
+                                            )));
+                              },
+                              child: Text(
+                                AppStrings.viewAll,
+                                style: TextStyle(
+                                    fontSize:
+                                        GetScreenSize.getScreenWidth(context) *
+                                            0.045,
+                                    color: AppColors.appGreyText,
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ),
                           ],
                         ),
@@ -389,14 +401,9 @@ class _Screen9State extends State<Screen9> {
           ],
         ),
       ),
-      bottomSheet: CustomButtomButton(
+      bottomSheet: CustomBottomButton(
         onTab: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Screen10(
-                        list: widget.object.reviews,
-                      )));
+          CommonFunctions.showAddToCart(context);
         },
         text: AppStrings.addtoCart01,
       ),

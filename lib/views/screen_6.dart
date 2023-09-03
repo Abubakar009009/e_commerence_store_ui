@@ -151,7 +151,7 @@ class Screen6 extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: CustomButtomButton(
+      bottomSheet: CustomBottomButton(
           onTab: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Screen7()));

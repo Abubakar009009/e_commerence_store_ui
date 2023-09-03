@@ -1,10 +1,10 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomButtomButton extends StatelessWidget {
+class CustomBottomButton extends StatelessWidget {
   final String text;
   final VoidCallback onTab;
-  const CustomButtomButton(
+  const CustomBottomButton(
       {required this.onTab, required this.text, super.key});
 
   @override
@@ -14,7 +14,12 @@ class CustomButtomButton extends StatelessWidget {
       child: Container(
         height: 75,
         width: MediaQuery.of(context).size.width,
-        color: AppColors.appPurpleColor,
+        decoration: BoxDecoration(
+            color: AppColors.appPurpleColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(0),
+              topRight: Radius.circular(0),
+            )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

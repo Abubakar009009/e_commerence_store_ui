@@ -1,11 +1,13 @@
+import 'package:e_commerence_store_ui/utils/app_strings.dart';
+import 'package:e_commerence_store_ui/utils/common_functions.dart';
 import 'package:e_commerence_store_ui/views/screen_13.dart/textfield.dart';
-import 'package:e_commerence_store_ui/views/screen_16.dart';
-import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
 import '../utils/media_query.dart';
 import '../widgets/back_custom_middle.dart';
+import '../widgets/custom_button.dart';
 
 class Screen15 extends StatefulWidget {
   const Screen15({super.key});
@@ -41,7 +43,7 @@ class _Screen15State extends State<Screen15> {
                   const BackCustomMiddle(),
                   const Expanded(child: SizedBox()),
                   Text(
-                    'Add New Card',
+                    AppStrings.addNewCard,
                     style: TextStyle(
                       color: AppColors.appBlackText,
                       fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
@@ -66,8 +68,8 @@ class _Screen15State extends State<Screen15> {
                       width: GetScreenSize.getScreenWidth(context) * 0.22,
                       decoration: BoxDecoration(
                         color: selectedContainerIndex == 0
-                            ? Colors.orange
-                                .withOpacity(0.3) // Yellow border if selected
+                            ? AppColors
+                                .orangeBorder // Yellow border if selected
                             : AppColors.appGreyBackground,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
@@ -79,7 +81,7 @@ class _Screen15State extends State<Screen15> {
                       ),
                       child: Center(
                         child: Image.asset(
-                          'assets/icons/image_9-removebg-preview.png',
+                          AppAssets.visacardImage,
                           height: GetScreenSize.getScreenWidth(context) * 0.05,
                           width: GetScreenSize.getScreenWidth(context) * 0.12,
                           scale: 1,
@@ -96,8 +98,8 @@ class _Screen15State extends State<Screen15> {
                       width: GetScreenSize.getScreenWidth(context) * 0.22,
                       decoration: BoxDecoration(
                         color: selectedContainerIndex == 1
-                            ? Colors.orange
-                                .withOpacity(0.3) // Yellow border if selected
+                            ? AppColors
+                                .orangeBorder // Yellow border if selected
                             : AppColors.appGreyBackground,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
@@ -109,7 +111,7 @@ class _Screen15State extends State<Screen15> {
                       ),
                       child: Center(
                         child: Image.asset(
-                          'assets/icons/image_10-removebg-preview.png',
+                          AppAssets.visapImage,
                           height: GetScreenSize.getScreenWidth(context) * 0.05,
                           width: GetScreenSize.getScreenWidth(context) * 0.12,
                           scale: 1,
@@ -126,8 +128,8 @@ class _Screen15State extends State<Screen15> {
                       width: GetScreenSize.getScreenWidth(context) * 0.22,
                       decoration: BoxDecoration(
                         color: selectedContainerIndex == 2
-                            ? Colors.orange
-                                .withOpacity(0.3) // Yellow border if selected
+                            ? AppColors
+                                .orangeBorder // Yellow border if selected
                             : AppColors.appGreyBackground,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
@@ -139,7 +141,7 @@ class _Screen15State extends State<Screen15> {
                       ),
                       child: Center(
                         child: Image.asset(
-                          'assets/icons/bank-building.png',
+                          AppAssets.bankImage,
                           height: GetScreenSize.getScreenWidth(context) * 0.05,
                           width: GetScreenSize.getScreenWidth(context) * 0.12,
                         ),
@@ -152,7 +154,7 @@ class _Screen15State extends State<Screen15> {
                 height: GetScreenSize.getScreenWidth(context) * 0.1,
               ),
               Text(
-                'Card Owner',
+                AppStrings.cardOwner,
                 style: TextStyle(
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                     fontWeight: FontWeight.w500),
@@ -162,13 +164,13 @@ class _Screen15State extends State<Screen15> {
               ),
               TextFieldCustom(
                 width: GetScreenSize.getScreenWidth(context) * 0.9,
-                hintText: 'Mrh Raju',
+                hintText: AppStrings.namehint,
               ),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
               ),
               Text(
-                'Card Number',
+                AppStrings.cardNumber,
                 style: TextStyle(
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                     fontWeight: FontWeight.w500),
@@ -178,7 +180,7 @@ class _Screen15State extends State<Screen15> {
               ),
               TextFieldCustom(
                 width: GetScreenSize.getScreenWidth(context) * 0.9,
-                hintText: '5254 7634 8734 7690',
+                hintText: AppStrings.cardHint,
               ),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.05,
@@ -190,7 +192,7 @@ class _Screen15State extends State<Screen15> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'EXP',
+                        AppStrings.cardExpire,
                         style: TextStyle(
                             fontSize:
                                 GetScreenSize.getScreenWidth(context) * 0.045,
@@ -201,7 +203,7 @@ class _Screen15State extends State<Screen15> {
                       ),
                       TextFieldCustom(
                         width: GetScreenSize.getScreenWidth(context) * 0.4,
-                        hintText: '24/24',
+                        hintText: AppStrings.cardExpireHint,
                       )
                     ],
                   ),
@@ -209,7 +211,7 @@ class _Screen15State extends State<Screen15> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'CVV',
+                        AppStrings.cardCvv,
                         style: TextStyle(
                             fontSize:
                                 GetScreenSize.getScreenWidth(context) * 0.045,
@@ -220,22 +222,30 @@ class _Screen15State extends State<Screen15> {
                       ),
                       TextFieldCustom(
                         width: GetScreenSize.getScreenWidth(context) * 0.4,
-                        hintText: '7763',
-                      )
+                        hintText: AppStrings.cardCvv,
+                      ),
                     ],
                   )
                 ],
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              CustomTextButton(
+                onTab: () {
+                  CommonFunctions.cardAdded(context);
+                },
+                buttonText: 'Add Card',
+                buttonColor: AppColors.appPurpleColor,
+                radius: 15,
+                fontSize: 17,
+                fontColor: AppColors.AppWhiteColor,
+                height: MediaQuery.of(context).size.height * 0.070,
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: CustomButtomButton(
-          onTab: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Screen16()));
-          },
-          text: 'Add Card'),
     );
   }
 }

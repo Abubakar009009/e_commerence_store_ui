@@ -2,9 +2,10 @@ import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
+import 'package:e_commerence_store_ui/views/screen_17_drawer.dart';
+import 'package:e_commerence_store_ui/views/screen_18.dart';
 import 'package:e_commerence_store_ui/views/screen_9.dart';
 import 'package:e_commerence_store_ui/widgets/bag_custom.dart';
-import 'package:e_commerence_store_ui/widgets/menu_custom.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/media_query.dart';
@@ -20,11 +21,11 @@ class Screen8 extends StatelessWidget {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldKey,
-      drawer: const Drawer(),
+      drawer: const Screen17Drawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            top: GetScreenSize.getScreenWidth(context) * 0.17,
+            top: GetScreenSize.getScreenWidth(context) * 0.15,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,6 @@ class Screen8 extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        print('heli');
                         _scaffoldKey.currentState?.openDrawer();
                       },
                       child: Container(
@@ -58,7 +58,7 @@ class Screen8 extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: GetScreenSize.getScreenWidth(context) * 0.05,
+                height: GetScreenSize.getScreenWidth(context) * 0.0,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -164,8 +164,18 @@ class Screen8 extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: AppConstants.brandList.length,
                     itemBuilder: (context, index) {
-                      return BrandWiget(
-                        object: AppConstants.brandList[index],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => Screen18(
+                                        object: AppConstants.brandList[index],
+                                      ))));
+                        },
+                        child: BrandWiget(
+                          object: AppConstants.brandList[index],
+                        ),
                       );
                     },
                   ),

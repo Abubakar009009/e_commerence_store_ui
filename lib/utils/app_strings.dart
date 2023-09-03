@@ -74,4 +74,71 @@ class AppStrings {
   static String nameHint = 'Please Enter Name';
   static String reviewHint = 'Describe your experience?';
   static String reviewText = 'How was Your Experience';
+  static String starText = 'Star';
+  static String minStarValue = '0.0';
+  static String maxStarValue = '5.0';
+  static String submitReview = 'Submit Review';
+
+  static String cartText = 'Cart';
+  static String deliveryText = 'Delivery Address';
+
+  static String paymentMethod = 'Payment Method';
+  static String addressText = 'Chhatak, Sunamgonj 12/8AB';
+  static String addressCity = 'Sylhet';
+  static String orderInfoTitle = 'Order Info';
+
+  static String subTotal = 'Sub Total';
+  static String shippingCost = 'Shipping Cost';
+
+  static String total = 'Total';
+  static String checkOut = 'Checkout';
+  static String address = 'Address';
+  static String country = 'Country';
+  static String countryhint = 'Bangladesh';
+  static String namehint = 'Mrh Raju';
+
+  static String city = 'City';
+  static String cityName = 'Sylhet';
+  static String phoneNumber = 'Phone Number';
+  static String phoneNumberHint = '+92 310 4438423';
+  static String saveAsPrimary = 'Save as primary address';
+  static String saveAddress = 'Save Address';
+  static String payment = 'Payment';
+  static String addNewCard = 'Add new Card';
+  static String cardOwner = 'Card Owner';
+  static String cardNumber = 'Card Number';
+  static String cardHint = '5254 7634 8734 7690';
+  static String cardExpire = 'EXP';
+  static String cardExpireHint = '24/24';
+
+  static String cardCvv = 'CVV';
+  static String cardCvvHint = '7763';
+
+  static String saveCardInfo = 'Save card info';
+  static String saveCard = 'Save Card';
+  static String addCard = 'Add Card';
+  static String orderConfirmed = 'Order Confirmed!';
+  static String orderConfirmedText =
+      'Your order has been confirmed, we will send you confirmation email shortly.';
+
+  static String gotoOrdersButton = 'Go to Orders';
+  static String continueShopping = 'Continue Shopping';
+
+  ///////////////////////drawer
+  static String orders = '3 orders';
+  static String verifiedProfile = 'Verified Profile';
+  static String darkMode = 'Dark Mode';
+  static String accountInfo = 'Account Information';
+  static String orderInfo = 'Order';
+  static String cardsInfo = 'My Cards';
+  static String wishlistInfo = 'Wishlist';
+  static String settingsInfo = 'Settings';
+  static String logoutInfo = 'Logout';
+
+  ///
+  static String items = '365 Items';
+  static String avaliable = 'Available in stock';
+  static String sort = 'Sort';
+
+  static String edit = 'Edit';
 }

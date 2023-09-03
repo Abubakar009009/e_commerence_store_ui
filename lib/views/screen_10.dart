@@ -40,6 +40,10 @@ class Screen10 extends StatelessWidget {
                         fontWeight: FontWeight.w600),
                   ),
                   Expanded(child: SizedBox()),
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.transparent,
+                  ),
                 ],
               ),
               SizedBox(

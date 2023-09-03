@@ -15,4 +15,5 @@ class AppColors {
   static Color orangestar = Colors.orange;
   static Color reviewButton = Color.fromRGBO(255, 112, 67, 1);
   static Color greenTick = Color.fromRGBO(74, 199, 109, 1);
+  static Color orangeBorder = Colors.orange.withOpacity(0.3);
 }

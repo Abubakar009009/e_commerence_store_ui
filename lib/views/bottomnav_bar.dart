@@ -1,7 +1,13 @@
 // ignore_for_file: prefer_final_fields, use_key_in_widget_constructors
 
+import 'package:e_commerence_store_ui/utils/app_colors.dart';
+import 'package:e_commerence_store_ui/views/screen_12.dart';
+import 'package:e_commerence_store_ui/views/screen_15.dart';
+import 'package:e_commerence_store_ui/views/screen_19.dart';
 import 'package:e_commerence_store_ui/views/screen_8.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/app_constants.dart';
 
 class FavoriteScreen extends StatelessWidget {
   @override
@@ -43,9 +49,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<Widget> _widgetOptions = <Widget>[
     const Screen8(),
-    FavoriteScreen(),
-    WalletScreen(),
-    CartScreen(),
+    Screen19(),
+    Screen15(),
+    Screen12(listofproducts: AppConstants.productsList),
   ];
 
   void _onItemTapped(int index) {
@@ -66,11 +72,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            label: 'Wishlist',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet),
-            label: 'Wallet',
+            label: 'Cards',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
@@ -78,8 +84,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromRGBO(151, 117, 250, 1),
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: AppColors.appPurpleColor,
+        unselectedItemColor: AppColors.appGreyBackground,
         onTap: _onItemTapped,
       ),
     );

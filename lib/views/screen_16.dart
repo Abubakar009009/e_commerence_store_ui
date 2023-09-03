@@ -3,7 +3,9 @@ import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
+import '../utils/app_strings.dart';
 import '../widgets/back_custom_middle.dart';
 
 class Screen16 extends StatelessWidget {
@@ -26,13 +28,13 @@ class Screen16 extends StatelessWidget {
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.2,
               ),
-              Center(child: Image.asset('assets/images/Group 2.png')),
+              Center(child: Image.asset(AppAssets.orderImage)),
               SizedBox(
                 height: GetScreenSize.getScreenWidth(context) * 0.1,
               ),
               Center(
                 child: Text(
-                  'Order Confirmed!',
+                  AppStrings.orderConfirmed,
                   style: TextStyle(
                     color: AppColors.appBlackText,
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
@@ -45,7 +47,7 @@ class Screen16 extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                  'Your order has been confirmed, we will send you confirmation email shortly.',
+                  AppStrings.orderConfirmedText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.appGreyText,
@@ -59,7 +61,7 @@ class Screen16 extends StatelessWidget {
               ),
               CustomTextButton(
                   onTab: () {},
-                  buttonText: 'Go to Orders',
+                  buttonText: AppStrings.gotoOrdersButton,
                   buttonColor: AppColors.appGreyBackground,
                   height: GetScreenSize.getScreenWidth(context) * 0.13,
                   radius: 10,
@@ -70,7 +72,7 @@ class Screen16 extends StatelessWidget {
         ),
       ),
       bottomNavigationBar:
-          CustomButtomButton(onTab: () {}, text: 'Continue Shopping'),
+          CustomBottomButton(onTab: () {}, text: AppStrings.continueShopping),
     );
   }
 }

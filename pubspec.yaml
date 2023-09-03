@@ -41,6 +41,7 @@ dependencies:
   readmore: ^2.2.0
   smooth_star_rating_null_safety: ^1.0.4+2
   flutter_credit_card:
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

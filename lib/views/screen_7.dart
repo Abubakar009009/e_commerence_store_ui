@@ -1,4 +1,5 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
+import 'package:e_commerence_store_ui/views/screen_4.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -85,10 +86,10 @@ class Screen7 extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: CustomButtomButton(
+      bottomSheet: CustomBottomButton(
           onTab: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => BottomNavBar()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Screen4()));
           },
           text: AppStrings.resetPassword),
     );

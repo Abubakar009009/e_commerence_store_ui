@@ -1,6 +1,7 @@
 import 'package:e_commerence_store_ui/providers/product_details_provider.dart';
 import 'package:e_commerence_store_ui/providers/signup_provider.dart';
 import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
+import 'package:e_commerence_store_ui/views/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           ), // Use the same font family name here
         ),
       ),
-      home: BottomNavBar(),
+      home: SplashScreen(),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/media_query.dart';
-import 'back_custom_middle.dart';
 
 class CartProduct extends StatefulWidget {
   final ProductsModel object;

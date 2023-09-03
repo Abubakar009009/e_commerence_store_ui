@@ -1,5 +1,6 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
+import 'package:e_commerence_store_ui/views/screen_4.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/views/screen_3.dart';
 import 'package:e_commerence_store_ui/widgets/back_custom.dart';
@@ -86,31 +87,40 @@ class Screen2 extends StatelessWidget {
             const Expanded(child: SizedBox()),
             Align(
               alignment: Alignment.bottomCenter,
-              child: RichText(
-                text: TextSpan(
-                  text: AppStrings.alreadyAccount,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: AppColors.appGreyText,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Screen4()));
+                },
+                child: RichText(
+                  text: TextSpan(
+                    text: AppStrings.alreadyAccount,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: AppColors.appGreyText,
 
-                    // Other properties you want to customize
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: AppStrings.signIn,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.appBlackText,
-                      ),
+                      // Other properties you want to customize
                     ),
-                  ],
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: AppStrings.signIn,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.appBlackText,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
-      bottomSheet: CustomButtomButton(
+      bottomNavigationBar: CustomBottomButton(
         text: AppStrings.createAnAccount,
         onTab: () {
           Navigator.push(context,

@@ -1,6 +1,8 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
+import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
 import 'package:e_commerence_store_ui/views/screen_5.dart';
+import 'package:e_commerence_store_ui/views/screen_8.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/widgets/custom_textfield.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,12 +82,21 @@ class _Screen4State extends State<Screen4> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
-                          AppStrings.forgotPassword,
-                          style: TextStyle(
-                              fontSize:
-                                  GetScreenSize.getScreenWidth(context) * 0.04,
-                              color: AppColors.redText),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Screen5()));
+                          },
+                          child: Text(
+                            AppStrings.forgotPassword,
+                            style: TextStyle(
+                                fontSize:
+                                    GetScreenSize.getScreenWidth(context) *
+                                        0.04,
+                                color: AppColors.redText),
+                          ),
                         )
                       ],
                     ),
@@ -143,11 +154,11 @@ class _Screen4State extends State<Screen4> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomButtomButton(
+      bottomNavigationBar: CustomBottomButton(
           onTab: () {
             if (CommonFunctions.checkLogin(context)) {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const Screen5()));
+                  MaterialPageRoute(builder: (context) => BottomNavBar()));
             }
           },
           text: AppStrings.login),
