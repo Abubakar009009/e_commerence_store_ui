@@ -4,10 +4,8 @@ import 'package:e_commerence_store_ui/views/screen_13.dart/screen_13.dart';
 import 'package:e_commerence_store_ui/views/screen_14.dart';
 import 'package:e_commerence_store_ui/views/screen_16.dart';
 import 'package:e_commerence_store_ui/widgets/cart_product.dart';
-import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../models/products_model.dart';
 import '../utils/app_strings.dart';

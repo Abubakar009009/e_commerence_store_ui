@@ -1,3 +1,8 @@
+import 'package:e_commerence_store_ui/utils/app_constants.dart';
+import 'package:e_commerence_store_ui/views/orders_screen/order_screen.dart';
+import 'package:e_commerence_store_ui/views/screen_14.dart';
+import 'package:e_commerence_store_ui/views/screen_16.dart';
+import 'package:e_commerence_store_ui/views/screen_19.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:e_commerence_store_ui/widgets/drawer_row.dart';
 import 'package:flutter/cupertino.dart';
@@ -135,19 +140,59 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
             const SizedBox(
               height: 20,
             ),
-            DrawerRow(
-                imagelink: AppAssets.drawerbag, text: AppStrings.orderInfo),
+            GestureDetector(
+              onTap: () {
+                // Close the drawer
+                Navigator.of(context).pop();
+
+                // Navigate to Screen16
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrdersScreen(
+                            objects: AppConstants.productsList,
+                          )),
+                );
+              },
+              child: DrawerRow(
+                  imagelink: AppAssets.drawerbag, text: AppStrings.orderInfo),
+            ),
             const SizedBox(
               height: 20,
             ),
-            DrawerRow(
-                imagelink: AppAssets.drawerWallet, text: AppStrings.cardsInfo),
+            GestureDetector(
+              onTap: () {
+                // Close the drawer
+                Navigator.of(context).pop();
+
+                // Navigate to Screen16
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Screen14()),
+                );
+              },
+              child: DrawerRow(
+                  imagelink: AppAssets.drawerWallet,
+                  text: AppStrings.cardsInfo),
+            ),
             const SizedBox(
               height: 20,
             ),
-            DrawerRow(
-                imagelink: AppAssets.drawerHeart,
-                text: AppStrings.wishlistInfo),
+            GestureDetector(
+              onTap: () {
+                // Close the drawer
+                Navigator.of(context).pop();
+
+                // Navigate to Screen16
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Screen19()),
+                );
+              },
+              child: DrawerRow(
+                  imagelink: AppAssets.drawerHeart,
+                  text: AppStrings.wishlistInfo),
+            ),
             const SizedBox(
               height: 20,
             ),

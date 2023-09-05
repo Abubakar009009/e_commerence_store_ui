@@ -1,4 +1,7 @@
+import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
+import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
+import 'package:e_commerence_store_ui/views/orders_screen/order_screen.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +63,14 @@ class Screen16 extends StatelessWidget {
                 height: GetScreenSize.getScreenWidth(context) * 0.15,
               ),
               CustomTextButton(
-                  onTab: () {},
+                  onTab: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => OrdersScreen(
+                                  objects: AppConstants.productsList,
+                                )));
+                  },
                   buttonText: AppStrings.gotoOrdersButton,
                   buttonColor: AppColors.appGreyBackground,
                   height: GetScreenSize.getScreenWidth(context) * 0.13,
@@ -71,8 +81,12 @@ class Screen16 extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar:
-          CustomBottomButton(onTab: () {}, text: AppStrings.continueShopping),
+      bottomNavigationBar: CustomBottomButton(
+          onTab: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => BottomNavBar()));
+          },
+          text: AppStrings.continueShopping),
     );
   }
 }

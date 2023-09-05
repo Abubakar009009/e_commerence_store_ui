@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "105204797030",
+    "project_id": "lazaapp-83019",
+    "storage_bucket": "lazaapp-83019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105204797030:android:68938260eb34c77530a7a7",
+        "android_client_info": {
+          "package_name": "com.example.e_commerence_store_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105204797030-t3q8oiid44vmed7k9v5qgutujj7jtfep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw9PsfzdrKBRc9eEUjNCVEibQvdnMlDIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105204797030-t3q8oiid44vmed7k9v5qgutujj7jtfep.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105204797030-tu6t69f3i2dnifbaqdenu93pipu2rb1b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eCommerenceStoreUi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

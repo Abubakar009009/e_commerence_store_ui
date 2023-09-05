@@ -42,7 +42,14 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   flutter_credit_card:
   another_flushbar: ^1.12.30
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.9.0
+  cloud_firestore: 
+  firebase_storage:
+  image_picker: 
 
+  
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

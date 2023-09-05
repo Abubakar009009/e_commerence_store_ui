@@ -8,9 +8,9 @@ class AppConstants {
   static bool password = false;
   static bool email = false;
 
-  static String? usernameGiven = '';
-  static String? emailGiven = '';
-  static String? passwordGiven = '';
+  static String usernameGiven = '';
+  static String emailGiven = '';
+  static String passwordGiven = '';
 
   static List<BrandModel> brandList = [
     BrandModel(name: 'Adidas', imageLink: 'assets/images/Adidas.jpg'),
@@ -27,6 +27,122 @@ class AppConstants {
     BrandModel(name: 'Nike', imageLink: 'assets/images/Adidas.jpg'),
     BrandModel(name: 'Adidas', imageLink: 'assets/images/Nike.jpg'),
   ];
+  static List<String> brandList1 = [
+    'nike',
+    'puma',
+    'adidas',
+    'fila',
+    'sketchers',
+    'ali',
+    'khan',
+    'musa',
+    'reebok',
+    'under armour',
+    'new balance',
+    'converse',
+    'vans',
+    'asics',
+    'salomon',
+    'lacoste',
+    'polo ralph lauren',
+    'timberland',
+    'clarks',
+    'dr. martens',
+    'caterpillar',
+    'skechers',
+    'gucci',
+    'prada',
+    'versace',
+    'calvin klein',
+    'tommy hilfiger',
+    'hugo boss',
+    'armani',
+    'louis vuitton',
+    'burberry',
+    'coach',
+    'michael kors',
+    'fendi',
+    'dior',
+    'chanel',
+    'hermes',
+    'givenchy',
+    'balenciaga',
+    'valentino',
+    'yves saint laurent',
+    'bottega veneta',
+    'balmain',
+    'alexander mcqueen',
+    'jimmy choo',
+    'prabal gurung',
+    'rolex',
+    'omega',
+    'tag heuer',
+    'breitling',
+    'patek philippe',
+    'audemars piguet',
+    'citizen',
+    'seiko',
+    'swatch',
+    'g-shock',
+    'casio',
+    'nixon',
+    'apple',
+    'samsung',
+    'huawei',
+    'xiaomi',
+    'oneplus',
+    'sony',
+    'lg',
+    'panasonic',
+    'philips',
+    'logitech',
+    'lenovo',
+    'acer',
+    'dell',
+    'hp',
+    'asus',
+    'msi',
+    'alienware',
+    'corsair',
+    'razer',
+    'steelseries',
+    'adobe',
+    'microsoft',
+    'autodesk',
+    'ibm',
+    'oracle',
+    'intel',
+    'amd',
+    'nvidia',
+    'qualcomm',
+    'siemens',
+    'honeywell',
+    '3m',
+    'generalelectric',
+    'boeing',
+    'lockheed martin',
+    'northrop grumman',
+    'raytheon',
+    'rolls-royce',
+    'shell',
+    'exxonmobil',
+    'chevron',
+    'bp',
+    'total',
+    'saudi aramco',
+    'petrochina',
+    'sinopec',
+    'tesla',
+    'ford',
+    'toyota',
+    'honda',
+    'chevrolet',
+    'bmw',
+    'volkswagen',
+    'audi',
+    'mercedes-benz',
+  ];
+
   static List<ReviewModel> reviewsList = [
     ReviewModel(
         date: '20 - sep -2019',
@@ -37,21 +153,21 @@ class AppConstants {
         imageLink: 'assets/images/image4.jpg')
   ];
 
-  static List<String> desImages = [
-    'assets/images/des1.jpg',
-    'assets/images/des2.jpg',
-    'assets/images/des3.jpg',
-    'assets/images/des4.jpg',
-    'assets/images/des4.jpg',
-    'assets/images/des4.jpg'
-  ];
+  // static List<String> desImages = [
+  //   'assets/images/des1.jpg',
+  //   'assets/images/des2.jpg',
+  //   'assets/images/des3.jpg',
+  //   'assets/images/des4.jpg',
+  //   'assets/images/des4.jpg',
+  //   'assets/images/des4.jpg'
+  // ];
   static List<String> sizes = ['S', 'M', 'L', 'XL', '2XL'];
 
   static List<ProductsModel> productsList = [
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets01.jpg',
+          'assets/images/i1.png',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -76,7 +192,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets02.jpg',
+          'assets/images/i2.jpeg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -101,7 +217,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets04.jpg',
+          'assets/images/i3.jpeg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -126,7 +242,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets05.jpg',
+          'assets/images/i4.jpeg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -172,7 +288,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets06.jpg',
+          'assets/images/i5.jpg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -197,7 +313,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets07.jpg',
+          'assets/images/i6.jpeg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -222,7 +338,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets08.jpg',
+          'assets/images/i7.jpeg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',
@@ -247,7 +363,7 @@ class AppConstants {
     ProductsModel(
         name: 'Adidas',
         imageLink: [
-          'assets/images/jackets05.jpg',
+          'assets/images/i8.jpeg',
           'assets/images/des1.jpg',
           'assets/images/des2.jpg',
           'assets/images/des3.jpg',

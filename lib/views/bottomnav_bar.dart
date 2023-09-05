@@ -3,41 +3,12 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/views/screen_12.dart';
 import 'package:e_commerence_store_ui/views/screen_15.dart';
+import 'package:e_commerence_store_ui/views/screen_17_drawer.dart';
 import 'package:e_commerence_store_ui/views/screen_19.dart';
 import 'package:e_commerence_store_ui/views/screen_8.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_constants.dart';
-
-class FavoriteScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Favorite')),
-      body: const Center(child: Text('Favorite Screen')),
-    );
-  }
-}
-
-class WalletScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Wallet')),
-      body: const Center(child: Text('Wallet Screen')),
-    );
-  }
-}
-
-class CartScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Cart')),
-      body: const Center(child: Text('Cart Screen')),
-    );
-  }
-}
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -49,8 +20,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<Widget> _widgetOptions = <Widget>[
     const Screen8(),
-    Screen19(),
-    Screen15(),
+    const Screen19(),
+    const Screen15(),
     Screen12(listofproducts: AppConstants.productsList),
   ];
 
@@ -63,6 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Screen17Drawer(),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

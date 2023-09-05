@@ -4,55 +4,56 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/login_signup_state_provider.dart';
+import '../services/login_signup.dart';
 
 class CommonFunctions {
-  static bool checkLogin(BuildContext context) {
+  final obj = LoginSignup();
+  bool checkSignup(BuildContext context) {
     if (AppConstants.password && AppConstants.username) {
       AppConstants.password = false;
       AppConstants.username = false;
+
       print(AppConstants.passwordGiven);
       print(AppConstants.usernameGiven);
       // AppConstants.emailGiven = null;
-      AppConstants.passwordGiven = null;
-      AppConstants.usernameGiven = null;
-      // print('success');
-      return true;
+
+      obj.signUp(context, AppConstants.emailGiven, AppConstants.passwordGiven);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid data. Please check your input.'),
+          duration: Duration(seconds: 3),
+        ),
+      );
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Invalid data. Please check your input.'),
-        duration: Duration(seconds: 3),
-      ),
-    );
-
-    print('faliyer');
     return false;
   }
 
-  static bool checkSignup(BuildContext context) {
-    if (AppConstants.password && AppConstants.username && AppConstants.email) {
+  bool checkLogin(BuildContext context) {
+    if (AppConstants.password && AppConstants.email) {
       AppConstants.password = false;
-      AppConstants.username = false;
+      // AppConstants.username = false;
       AppConstants.email = false;
       print(AppConstants.emailGiven);
       print(AppConstants.passwordGiven);
       print(AppConstants.usernameGiven);
-      AppConstants.emailGiven = null;
-      AppConstants.passwordGiven = null;
-      AppConstants.usernameGiven = null;
 
-      print('success');
-      return true;
+      obj.signIn(context, AppConstants.emailGiven, AppConstants.passwordGiven);
+      // context.read<LoginSignupStateProvider>().logginDone();
+    } else {
+      context.read<LoginSignupStateProvider>().logginDone();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid data. Please check your input.'),
+          duration: Duration(seconds: 3),
+        ),
+      );
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Invalid data. Please check your input.'),
-        duration: Duration(seconds: 3),
-      ),
-    );
 
-    print('faliuer of signup ');
     return false;
   }
 
