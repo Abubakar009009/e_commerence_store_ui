@@ -8,6 +8,8 @@ class ProductsModel {
   final String description;
   final List<ReviewModel> reviews;
   final String totalPrice;
+  String approval;
+  String id;
 
   ProductsModel({
     required this.name,
@@ -17,5 +19,7 @@ class ProductsModel {
     required this.imageLink,
     required this.category,
     required this.price,
+    this.approval = '',
+    this.id = '',
   });
 }

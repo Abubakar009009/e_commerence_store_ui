@@ -1,5 +1,3 @@
-// // ignore_for_file: use_build_context_synchronously, prefer_final_fields, library_private_types_in_public_api
-
 // import 'package:flutter/material.dart';
 // import 'package:image_picker/image_picker.dart';
 // import 'dart:io';
@@ -25,33 +23,50 @@
 
 //   Future<void> _submitData() async {
 //     if (_formKey.currentState!.validate() && _selectedImages!.isNotEmpty) {
-//       // Validate form fields and check if images are selected
-
-//       // Upload images to Firebase Storage
-//       final List<String> imageUrls = [];
 //       final FirebaseStorage storage = FirebaseStorage.instance;
+//       final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+//       // Generate a random document ID for the product
+//       final DocumentReference productRef =
+//           firestore.collection('products').doc();
+//       final DocumentReference productRef1 =
+//           firestore.collection('Categories').doc(_categoryController.text);
+//       final String productId = productRef.id;
+
+//       // Upload images to Firebase Storage and get download URLs
+//       final List<String> imageUrls = [];
 
 //       for (int i = 0; i < _selectedImages!.length; i++) {
 //         final Reference storageRef =
-//             storage.ref().child('product_images/${DateTime.now()}_$i.jpg');
+//             storage.ref().child('product_images/$productId/$i.jpg');
 //         final UploadTask uploadTask =
 //             storageRef.putFile(File(_selectedImages![i].path));
-//         final TaskSnapshot downloadUrl = (await uploadTask);
+//         final TaskSnapshot downloadUrl = await uploadTask;
 //         final String imageUrl = await downloadUrl.ref.getDownloadURL();
 //         imageUrls.add(imageUrl);
 //       }
 
-//       // Save data to Firestore
-//       final FirebaseFirestore firestore = FirebaseFirestore.instance;
-//       await firestore.collection('products').add({
+//       // Save product data to Firestore
+//       await productRef.set({
 //         'name': _nameController.text,
 //         'category': _categoryController.text,
 //         'price': _priceController.text,
 //         'description': _descriptionController.text,
 //         'totalPrice': _totalPriceController.text,
 //         'images': imageUrls,
+//         'id of product ': productRef.id,
+//         'approval': 'No'
 //       });
-
+//       await productRef1.set({
+//         'name': _nameController.text,
+//         'category': _categoryController.text,
+//         'price': _priceController.text,
+//         'description': _descriptionController.text,
+//         'totalPrice': _totalPriceController.text,
+//         'images': imageUrls,
+//         'id of product ': productRef.id,
+//         'approval': 'No'
+//       });
 //       // Clear form fields and show a success message
 //       _nameController.clear();
 //       _categoryController.clear();
@@ -176,6 +191,7 @@
 //     );
 //   }
 // }
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -222,18 +238,35 @@ class _AddDataScreenState extends State<AddDataScreen> {
         imageUrls.add(imageUrl);
       }
 
+      // Get the category name
+      final String categoryName = _categoryController.text;
+
+      // Reference to the category collection
+      final CollectionReference categoryCollection =
+          firestore.collection('categories/$categoryName/products');
+
       // Save product data to Firestore
       await productRef.set({
         'name': _nameController.text,
-        'category': _categoryController.text,
+        'category': categoryName,
         'price': _priceController.text,
         'description': _descriptionController.text,
         'totalPrice': _totalPriceController.text,
         'images': imageUrls,
+        'id of product': productId,
+        'approval': 'No'
       });
 
-      // Save the generated product ID in a separate collection
-      await firestore.collection('product_ids').doc(productId).set({});
+      // Save product data to the category collection
+      await categoryCollection.doc(productId).set({
+        'name': _nameController.text,
+        'price': _priceController.text,
+        'description': _descriptionController.text,
+        'totalPrice': _totalPriceController.text,
+        'images': imageUrls,
+        'id of product': productId,
+        'approval': 'No'
+      });
 
       // Clear form fields and show a success message
       _nameController.clear();

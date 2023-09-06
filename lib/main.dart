@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const AddDataScreen(),
+      home: const SplashScreen(),
     );
   }
 }

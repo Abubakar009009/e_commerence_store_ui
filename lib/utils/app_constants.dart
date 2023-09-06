@@ -4,6 +4,7 @@ import 'package:e_commerence_store_ui/models/review_model.dart';
 import '../models/brand_model.dart';
 
 class AppConstants {
+  static List<ProductsModel> getDataList = [];
   static bool username = false;
   static bool password = false;
   static bool email = false;
