@@ -227,16 +227,6 @@ class _Screen12State extends State<Screen12> {
               SizedBox(
                 height: 30,
               ),
-              // Center(
-              //   child: CustomTextButton(
-              //       onTab: () {},
-              //       buttonText: 'Check Out',
-              //       buttonColor: AppColors.appPurpleColor,
-              //       height: 75,
-              //       width: GetScreenSize.getScreenWidth(context) * 0.6,
-              //       radius: 10,
-              //       fontSize: GetScreenSize.getScreenWidth(context) * 0.05),
-              // ),
               CustomTextButton(
                 onTab: () {
                   Navigator.push(context,

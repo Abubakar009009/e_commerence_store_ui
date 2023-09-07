@@ -30,7 +30,7 @@ class BrandWiget extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(1.0),
-                    child: Image.asset(object.imageLink),
+                    child: Image.network(object.imageLink),
                   )),
             ),
             Padding(

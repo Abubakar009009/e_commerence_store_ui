@@ -5,6 +5,7 @@ import 'package:e_commerence_store_ui/widgets/brand_custom_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../models/brand_model.dart';
+import '../models/products_model.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_constants.dart';
 import '../widgets/bag_custom.dart';
@@ -12,13 +13,38 @@ import '../widgets/product_widget.dart';
 
 class Screen18 extends StatefulWidget {
   final BrandModel object;
-  const Screen18({required this.object, super.key});
+  List<ProductsModel> list = [];
+  Screen18({required this.object, super.key});
 
   @override
   State<Screen18> createState() => _Screen18State();
 }
 
 class _Screen18State extends State<Screen18> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.object.name == 'Adidas') {
+      setState(() {
+        widget.list = AppConstants.adidasList;
+      });
+    } else if (widget.object.name == 'Nike') {
+      setState(() {
+        widget.list = AppConstants.nikeList;
+      });
+    } else if (widget.object.name == 'Fila') {
+      setState(() {
+        widget.list = AppConstants.filaList;
+      });
+    } else {
+      setState(() {
+        widget.list = AppConstants.getDataList;
+      });
+    }
+    print(widget.object.name);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +136,7 @@ class _Screen18State extends State<Screen18> {
               ),
               GridView.builder(
                   // padding: EdgeInsets.all(screenSize * 0.17),
-                  itemCount: AppConstants.productsList.length,
+                  itemCount: widget.list.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -126,11 +152,11 @@ class _Screen18State extends State<Screen18> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Screen9(
-                                    object: AppConstants.productsList[index])));
+                                builder: (context) =>
+                                    Screen9(object: widget.list[index])));
                       },
                       child: ProductWidget(
-                        object: AppConstants.productsList[index],
+                        object: widget.list[index],
                       ),
                     );
                   }),

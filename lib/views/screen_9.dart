@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
 import 'package:e_commerence_store_ui/providers/product_details_provider.dart';
+import 'package:e_commerence_store_ui/services/add_to_cart.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
@@ -8,9 +10,11 @@ import 'package:e_commerence_store_ui/views/screen_10.dart';
 import 'package:e_commerence_store_ui/widgets/back_custom.dart';
 import 'package:e_commerence_store_ui/widgets/bag_custom.dart';
 import 'package:e_commerence_store_ui/widgets/custom_reviewbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../utils/common_functions.dart';
 import '../widgets/custom_bottom_buttons.dart';
@@ -36,6 +40,8 @@ class _Screen9State extends State<Screen9> {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final User? currentUser = _auth.currentUser;
     return Scaffold(
       body: Column(
         children: [
@@ -50,9 +56,18 @@ class _Screen9State extends State<Screen9> {
                     width: MediaQuery.of(context).size.width,
                     child: InteractiveViewer(
                       boundaryMargin: EdgeInsets.all(5),
-                      child: Image.asset(
-                        context.watch<ProductDetailsProvider>().getImage,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            context.watch<ProductDetailsProvider>().getImage,
                         fit: BoxFit.cover,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            color: Colors
+                                .white, // You can set any background color here
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -179,8 +194,17 @@ class _Screen9State extends State<Screen9> {
                                     width:
                                         GetScreenSize.getScreenWidth(context) *
                                             0.2,
-                                    child: Image.asset(
-                                      widget.object.imageLink[index],
+                                    child: CachedNetworkImage(
+                                      imageUrl: widget.object.imageLink[index],
+                                      placeholder: (context, url) =>
+                                          Shimmer.fromColors(
+                                        baseColor: Colors.grey[300]!,
+                                        highlightColor: Colors.grey[100]!,
+                                        child: Container(
+                                          color: Colors
+                                              .white, // You can set any background color here
+                                        ),
+                                      ),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -415,6 +439,7 @@ class _Screen9State extends State<Screen9> {
       bottomSheet: CustomBottomButton(
         onTab: () {
           CommonFunctions.showAddToCart(context);
+          AddToCart.addToCart(widget.object, currentUser!.uid);
         },
         text: AppStrings.addtoCart01,
       ),

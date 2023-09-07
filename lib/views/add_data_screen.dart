@@ -242,8 +242,6 @@ class _AddDataScreenState extends State<AddDataScreen> {
       final String categoryName = _categoryController.text;
 
       // Reference to the category collection
-      final CollectionReference categoryCollection =
-          firestore.collection('categories/$categoryName/products');
 
       // Save product data to Firestore
       await productRef.set({
@@ -258,15 +256,6 @@ class _AddDataScreenState extends State<AddDataScreen> {
       });
 
       // Save product data to the category collection
-      await categoryCollection.doc(productId).set({
-        'name': _nameController.text,
-        'price': _priceController.text,
-        'description': _descriptionController.text,
-        'totalPrice': _totalPriceController.text,
-        'images': imageUrls,
-        'id of product': productId,
-        'approval': 'No'
-      });
 
       // Clear form fields and show a success message
       _nameController.clear();
@@ -296,8 +285,8 @@ class _AddDataScreenState extends State<AddDataScreen> {
   }
 
   Future<void> _pickImages() async {
-    final List<XFile> result = await ImagePicker()
-        .pickMultiImage(imageQuality: 5 - (_selectedImages!.length));
+    final List<XFile> result =
+        await ImagePicker().pickMultiImage(imageQuality: 100);
     if (result.isNotEmpty) {
       setState(() {
         _selectedImages!.addAll(result);

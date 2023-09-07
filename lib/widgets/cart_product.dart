@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/media_query.dart';
@@ -61,8 +63,16 @@ class _CartProductState extends State<CartProduct>
               width: GetScreenSize.getScreenWidth(context) * 0.3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  widget.object.imageLink[0],
+                child: CachedNetworkImage(
+                  imageUrl: widget.object.imageLink[0],
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      color:
+                          Colors.white, // You can set any background color here
+                    ),
+                  ),
                 ),
               ),
             ),

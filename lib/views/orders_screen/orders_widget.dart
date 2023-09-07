@@ -30,7 +30,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
               width: GetScreenSize.getScreenWidth(context) * 0.3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
+                child: Image.network(
                   widget.object.imageLink[0],
                 ),
               ),

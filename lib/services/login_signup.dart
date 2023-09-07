@@ -16,9 +16,10 @@ class LoginSignup {
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
       // ignore: prefer_const_constructors
-      context.read<LoginSignupStateProvider>().signupDone();
+
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Screen4()));
+      context.read<LoginSignupStateProvider>().signupDone();
 
       return user;
     } catch (e) {
@@ -40,10 +41,11 @@ class LoginSignup {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
-      context.read<LoginSignupStateProvider>().logginDone();
+
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => BottomNavBar()));
       print('-------------------------------signin done');
+      context.read<LoginSignupStateProvider>().logginDone();
       return user;
     } catch (e) {
       context.read<LoginSignupStateProvider>().logginDone();

@@ -22,7 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const Screen8(),
     const Screen19(),
     const Screen15(),
-    Screen12(listofproducts: AppConstants.productsList),
+    Screen12(listofproducts: AppConstants.getDataList),
   ];
 
   void _onItemTapped(int index) {
@@ -33,33 +33,59 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const Screen17Drawer(),
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet),
-            label: 'Cards',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: AppColors.appPurpleColor,
-        unselectedItemColor: AppColors.appGreyBackground,
-        onTap: _onItemTapped,
+    return WillPopScope(
+      onWillPop: () => _onBackButtonPressed(context),
+      child: Scaffold(
+        drawer: const Screen17Drawer(),
+        body: _widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: 'Wishlist',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_balance_wallet),
+              label: 'Cards',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart),
+              label: 'Cart',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: AppColors.appPurpleColor,
+          unselectedItemColor: AppColors.appGreyBackground,
+          onTap: _onItemTapped,
+        ),
       ),
     );
+  }
+
+  Future<bool> _onBackButtonPressed(BuildContext context) async {
+    bool exitApp = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Do you want to close App'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text('Yes')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: Text('No')),
+            ],
+          );
+        });
+    return exitApp ?? false;
   }
 }

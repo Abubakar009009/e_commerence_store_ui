@@ -1,10 +1,14 @@
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/views/orders_screen/order_screen.dart';
+import 'package:e_commerence_store_ui/views/screen_1.dart';
 import 'package:e_commerence_store_ui/views/screen_14.dart';
 import 'package:e_commerence_store_ui/views/screen_16.dart';
 import 'package:e_commerence_store_ui/views/screen_19.dart';
+import 'package:e_commerence_store_ui/views/screen_3.dart';
+import 'package:e_commerence_store_ui/views/screen_4.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:e_commerence_store_ui/widgets/drawer_row.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -150,7 +154,7 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => OrdersScreen(
-                            objects: AppConstants.productsList,
+                            objects: AppConstants.getDataList,
                           )),
                 );
               },
@@ -200,24 +204,43 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
                 imagelink: AppAssets.drawerSettings,
                 text: AppStrings.settingsInfo),
             const Spacer(),
-            Row(
-              children: [
-                Image.asset(
-                  AppAssets.drawerLogout,
-                  height: 25,
-                  color: AppColors.redText,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  AppStrings.logoutInfo,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: AppColors.redText,
-                      fontWeight: FontWeight.w500),
-                ),
-              ],
+            GestureDetector(
+              onTap: () async {
+                // Perform Firebase logout
+                try {
+                  await FirebaseAuth.instance.signOut();
+                } catch (e) {
+                  print('Error during logout: $e');
+                }
+
+                // Navigate to Screen3 and replace all existing routes
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        Screen1(), // Replace with your desired screen
+                  ),
+                  (route) => false, // Pop all existing routes from the stack
+                );
+              },
+              child: Row(
+                children: [
+                  Image.asset(
+                    AppAssets.drawerLogout,
+                    height: 25,
+                    color: AppColors.redText,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    AppStrings.logoutInfo,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: AppColors.redText,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 50,

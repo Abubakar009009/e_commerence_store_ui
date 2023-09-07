@@ -68,7 +68,7 @@ class Screen16 extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => OrdersScreen(
-                                  objects: AppConstants.productsList,
+                                  objects: AppConstants.getDataList,
                                 )));
                   },
                   buttonText: AppStrings.gotoOrdersButton,

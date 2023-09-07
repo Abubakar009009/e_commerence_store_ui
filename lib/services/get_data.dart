@@ -32,8 +32,15 @@ class GetData {
 
         // Add the product to the list
         productsList.add(product);
+        if (product.category == 'Adidas') {
+          AppConstants.adidasList.add(product);
+        } else if (product.category == 'Nike') {
+          AppConstants.nikeList.add(product);
+        } else if (product.category == 'Fila') {
+          AppConstants.filaList.add(product);
+        }
       }
-      print(productsList[0].name);
+
       return productsList;
     } catch (e) {
       print('Error fetching data: $e');

@@ -112,7 +112,7 @@ class _Screen19State extends State<Screen19> {
               ),
               GridView.builder(
                   // padding: EdgeInsets.all(screenSize * 0.17),
-                  itemCount: AppConstants.productsList.length,
+                  itemCount: AppConstants.getDataList.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -129,10 +129,10 @@ class _Screen19State extends State<Screen19> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Screen9(
-                                    object: AppConstants.productsList[index])));
+                                    object: AppConstants.getDataList[index])));
                       },
                       child: ProductWidget(
-                        object: AppConstants.productsList[index],
+                        object: AppConstants.getDataList[index],
                       ),
                     );
                   }),
