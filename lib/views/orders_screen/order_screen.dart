@@ -1,3 +1,4 @@
+import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/views/orders_screen/orders_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -49,11 +50,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: widget.objects.length,
+                itemCount: AppConstants.orderList.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      OrdersWidget(object: widget.objects[index]),
+                      OrdersWidget(object: AppConstants.orderList[index]),
                       SizedBox(height: 10),
                     ],
                   );

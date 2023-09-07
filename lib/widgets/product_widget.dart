@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
+import 'package:e_commerence_store_ui/services/wishlist_data.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
 import 'package:flutter/material.dart';
@@ -44,9 +45,14 @@ class ProductWidget extends StatelessWidget {
                 Positioned(
                   right: 8,
                   top: 8,
-                  child: Icon(
-                    Icons.favorite,
-                    color: AppColors.appGreyText,
+                  child: GestureDetector(
+                    onTap: () {
+                      WishlistData.addToWishlist(object.id);
+                    },
+                    child: Icon(
+                      Icons.favorite,
+                      color: AppColors.appGreyText,
+                    ),
                   ),
                 )
               ],
@@ -69,7 +75,7 @@ class ProductWidget extends StatelessWidget {
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            object.price,
+            '\$ ${object.price}',
             style: TextStyle(
                 fontSize: GetScreenSize.getScreenWidth(context) * 0.04,
                 color: AppColors.appBlackText,

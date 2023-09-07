@@ -1,9 +1,7 @@
-import 'package:e_commerence_store_ui/services/login_signup.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
 import 'package:e_commerence_store_ui/utils/common_functions.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
-import 'package:e_commerence_store_ui/views/screen_4.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/widgets/back_custom.dart';
 import 'package:e_commerence_store_ui/widgets/custom_textfield.dart';

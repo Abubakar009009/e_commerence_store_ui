@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
 import '../utils/media_query.dart';
-import '../widgets/back_custom_middle.dart';
 import '../widgets/custom_button.dart';
 
 class Screen15 extends StatefulWidget {
@@ -44,7 +43,6 @@ class _Screen15State extends State<Screen15> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const BackCustomMiddle(),
                     const Expanded(child: SizedBox()),
                     Text(
                       AppStrings.addNewCard,

@@ -6,17 +6,14 @@ class SendBrand {
     try {
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      // Create a reference to the Firestore collection
       final CollectionReference brandCollection =
           firestore.collection('Brands');
 
-      // Add the brand data to Firestore
       await brandCollection.add({
         'name': name,
         'imageLink': imageLink,
       });
 
-      // Brand added successfully
       print('Brand added to Firestore: $name');
     } catch (e) {
       // Handle errors here
@@ -29,7 +26,6 @@ class SendBrand {
     try {
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      // Create a reference to the Firestore collection
       final CollectionReference brandCollection =
           firestore.collection('Brands');
 

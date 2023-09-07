@@ -10,6 +10,7 @@ class ProductsModel {
   final String totalPrice;
   String approval;
   String id;
+  int countOfOrder;
 
   ProductsModel({
     required this.name,
@@ -21,5 +22,6 @@ class ProductsModel {
     required this.price,
     this.approval = '',
     this.id = '',
+    this.countOfOrder = 0,
   });
 }

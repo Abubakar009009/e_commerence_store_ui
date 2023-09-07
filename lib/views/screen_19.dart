@@ -1,7 +1,6 @@
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
 import 'package:e_commerence_store_ui/views/screen_9.dart';
-import 'package:e_commerence_store_ui/widgets/bag_custom.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
@@ -30,17 +29,6 @@ class _Screen19State extends State<Screen19> {
             children: [
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(Icons.arrow_back),
-                    ),
-                  ),
                   Spacer(),
                   Text(
                     'Wishlist',
@@ -50,7 +38,6 @@ class _Screen19State extends State<Screen19> {
                         fontWeight: FontWeight.w600),
                   ),
                   Spacer(),
-                  BagCustom(),
                 ],
               ),
               SizedBox(
@@ -111,8 +98,7 @@ class _Screen19State extends State<Screen19> {
                 ],
               ),
               GridView.builder(
-                  // padding: EdgeInsets.all(screenSize * 0.17),
-                  itemCount: AppConstants.getDataList.length,
+                  itemCount: AppConstants.wishlistProducts.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -129,7 +115,8 @@ class _Screen19State extends State<Screen19> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Screen9(
-                                    object: AppConstants.getDataList[index])));
+                                    object:
+                                        AppConstants.wishlistProducts[index])));
                       },
                       child: ProductWidget(
                         object: AppConstants.getDataList[index],

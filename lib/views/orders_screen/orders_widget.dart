@@ -1,3 +1,4 @@
+import 'package:e_commerence_store_ui/models/orders_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/products_model.dart';
@@ -5,7 +6,7 @@ import '../../utils/app_colors.dart';
 import '../../utils/media_query.dart';
 
 class OrdersWidget extends StatefulWidget {
-  final ProductsModel object;
+  final OrdersModel object;
   const OrdersWidget({required this.object, super.key});
 
   @override
@@ -30,9 +31,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
               width: GetScreenSize.getScreenWidth(context) * 0.3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  widget.object.imageLink[0],
-                ),
+                child: Image.asset('assets/images/Group 2.png'),
               ),
             ),
             Container(
@@ -47,19 +46,37 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Men\'s Tie-Dye T sdf  sss-ShirtNike Sportswear',
+                      'Sub Total \$${widget.object.subTotal}',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
                           fontSize:
                               GetScreenSize.getScreenWidth(context) * 0.04,
                           color: AppColors.appBlackText,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Text('\$45 (-\$4.00 Tax)'),
+                    Text(
+                      'Total Cost \$${widget.object.total}',
+                      style: TextStyle(
+                          fontSize:
+                              GetScreenSize.getScreenWidth(context) * 0.04,
+                          color: AppColors.appBlackText,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Total items in order ${widget.object.items.length}',
+                      style: TextStyle(
+                          fontSize:
+                              GetScreenSize.getScreenWidth(context) * 0.04,
+                          color: AppColors.appBlackText,
+                          fontWeight: FontWeight.bold),
+                    ),
                     Expanded(
                       child: SizedBox(),
                     ),
@@ -69,7 +86,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                         Row(
                           children: [
                             Text(
-                              'Order Completed ',
+                              '${widget.object.orderStatus} ',
                               style: TextStyle(
                                   fontSize:
                                       GetScreenSize.getScreenWidth(context) *

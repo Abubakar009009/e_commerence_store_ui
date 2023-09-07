@@ -6,21 +6,29 @@ import 'package:e_commerence_store_ui/views/screen_16.dart';
 import 'package:e_commerence_store_ui/widgets/cart_product.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../models/products_model.dart';
+import '../providers/add_to_cart_provider.dart';
 import '../utils/app_strings.dart';
 import '../utils/media_query.dart';
-import '../widgets/back_custom_middle.dart';
 
 class Screen12 extends StatefulWidget {
-  final List<ProductsModel> listofproducts;
-  const Screen12({required this.listofproducts, super.key});
+  const Screen12({super.key});
 
   @override
   State<Screen12> createState() => _Screen12State();
 }
 
 class _Screen12State extends State<Screen12> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    //context.read<AddtocartProvider>().calculateTotalCost();
+    super.initState();
+
+    context.read<AddtocartProvider>().calculateTotalCost();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +44,6 @@ class _Screen12State extends State<Screen12> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const BackCustomMiddle(),
                   const Expanded(child: SizedBox()),
                   Text(
                     AppStrings.cartText,
@@ -46,20 +53,24 @@ class _Screen12State extends State<Screen12> {
                         fontWeight: FontWeight.w600),
                   ),
                   Expanded(child: SizedBox()),
-                  Icon(
-                    Icons.arrow_back,
-                    color: Colors.transparent,
-                  ),
                 ],
               ),
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 1,
+                itemCount: context
+                        .watch<AddtocartProvider>()
+                        .cartProducts
+                        .isEmpty
+                    ? 0
+                    : context.watch<AddtocartProvider>().cartProducts.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      CartProduct(object: widget.listofproducts[index]),
+                      CartProduct(
+                          object: context
+                              .watch<AddtocartProvider>()
+                              .cartProducts[index]),
                       SizedBox(height: 10),
                     ],
                   );
@@ -178,7 +189,7 @@ class _Screen12State extends State<Screen12> {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    '\$110',
+                    '\$ ${context.watch<AddtocartProvider>().subTotalCost}',
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.050,
@@ -216,7 +227,7 @@ class _Screen12State extends State<Screen12> {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    '\$120',
+                    '\$ ${context.watch<AddtocartProvider>().totalCost}',
                     style: TextStyle(
                         color: AppColors.appBlackText,
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.050,
@@ -229,8 +240,7 @@ class _Screen12State extends State<Screen12> {
               ),
               CustomTextButton(
                 onTab: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Screen16()));
+                  context.read<AddtocartProvider>().placeOrder(context);
                 },
                 buttonText: 'Check Out',
                 buttonColor: AppColors.appPurpleColor,

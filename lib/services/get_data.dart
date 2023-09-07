@@ -7,7 +7,6 @@ class GetData {
     final List<ProductsModel> productsList = [];
 
     try {
-      // Get a reference to the Firestore collection
       final CollectionReference productsCollection =
           FirebaseFirestore.instance.collection('products');
 
@@ -17,7 +16,6 @@ class GetData {
         final Map<String, dynamic> productData = productDocument.data()
             as Map<String, dynamic>; // Convert data to a Map
 
-        // Create a new ProductsModel object
         final ProductsModel product = ProductsModel(
           name: productData['name'] ?? '',
           description: productData['description'] ?? '',
@@ -27,7 +25,7 @@ class GetData {
           category: productData['category'] ?? '',
           price: productData['price'] ?? '',
           approval: productData['approval'] ?? '',
-          id: productData['id'] ?? '',
+          id: productData['id of product'] ?? '',
         );
 
         // Add the product to the list
@@ -38,6 +36,9 @@ class GetData {
           AppConstants.nikeList.add(product);
         } else if (product.category == 'Fila') {
           AppConstants.filaList.add(product);
+        }
+        if (AppConstants.wishlist.contains(product.id)) {
+          AppConstants.wishlistProducts.add(product);
         }
       }
 

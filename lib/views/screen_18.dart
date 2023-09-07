@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
 import 'package:e_commerence_store_ui/views/screen_9.dart';

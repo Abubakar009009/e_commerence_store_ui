@@ -8,8 +8,6 @@ import 'package:e_commerence_store_ui/views/screen_19.dart';
 import 'package:e_commerence_store_ui/views/screen_8.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/app_constants.dart';
-
 class BottomNavBar extends StatefulWidget {
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -22,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const Screen8(),
     const Screen19(),
     const Screen15(),
-    Screen12(listofproducts: AppConstants.getDataList),
+    const Screen12(),
   ];
 
   void _onItemTapped(int index) {
@@ -71,21 +69,21 @@ class _BottomNavBarState extends State<BottomNavBar> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Do you want to close App'),
+            title: const Text('Do you want to close App'),
             actions: [
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
-                  child: Text('Yes')),
+                  child: const Text('Yes')),
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
-                  child: Text('No')),
+                  child: const Text('No')),
             ],
           );
         });
-    return exitApp ?? false;
+    return exitApp;
   }
 }
