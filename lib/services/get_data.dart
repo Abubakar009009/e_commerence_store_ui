@@ -26,13 +26,18 @@ class GetData {
           price: productData['price'] ?? '',
           approval: productData['approval'] ?? '',
           id: productData['id of product'] ?? '',
+          vendorId: productData['vendor_id'] ?? '',
         );
 
         // Add the product to the list
         productsList.add(product);
-        if (product.category == 'Adidas') {
+        //AppConstants.adidasList = [];
+        AppConstants.nikeList = [];
+        AppConstants.filaList = [];
+
+        if (product.category == 'adidas') {
           AppConstants.adidasList.add(product);
-        } else if (product.category == 'Nike') {
+        } else if (product.category == 'Puma') {
           AppConstants.nikeList.add(product);
         } else if (product.category == 'Fila') {
           AppConstants.filaList.add(product);

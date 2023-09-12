@@ -18,6 +18,7 @@ import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../services/add_to_cart.dart';
 import '../utils/common_functions.dart';
 import '../widgets/custom_bottom_buttons.dart';
 
@@ -441,8 +442,9 @@ class _Screen9State extends State<Screen9> {
       bottomSheet: CustomBottomButton(
         onTab: () {
           CommonFunctions.showAddToCart(context);
+          AddToCart.addToCart(widget.object.id, context);
           // AddToCart.addToCart(widget.object, currentUser!.uid);
-          context.read<AddtocartProvider>().addtocartProduct(widget.object);
+          //context.read<AddtocartProvider>().addtocartProduct(widget.object);
         },
         text: AppStrings.addtoCart01,
       ),

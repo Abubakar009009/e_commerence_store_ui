@@ -24,6 +24,7 @@ class _CartProductState extends State<CartProduct>
   @override
   void initState() {
     super.initState();
+    widget.object.countOfOrder = itemCount;
     _controller = AnimationController(vsync: this);
   }
 
@@ -38,6 +39,7 @@ class _CartProductState extends State<CartProduct>
   void incrementCount() {
     setState(() {
       itemCount++;
+      widget.object.countOfOrder = itemCount;
     });
   }
 
@@ -45,6 +47,7 @@ class _CartProductState extends State<CartProduct>
     if (itemCount > 1) {
       setState(() {
         itemCount--;
+        widget.object.countOfOrder = itemCount;
       });
     }
   }
@@ -91,7 +94,7 @@ class _CartProductState extends State<CartProduct>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Men\'s Tie-Dye T sdf  sss-ShirtNike Sportswear',
+                      widget.object.name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
@@ -103,7 +106,7 @@ class _CartProductState extends State<CartProduct>
                     SizedBox(
                       height: 10,
                     ),
-                    Text('\$45 (-\$4.00 Tax)'),
+                    Text('\$ ${widget.object.price} (-\$4.00 Tax)'),
                     Expanded(
                       child: SizedBox(),
                     ),
@@ -140,6 +143,7 @@ class _CartProductState extends State<CartProduct>
                               context
                                   .read<AddtocartProvider>()
                                   .deleteProduct(widget.object);
+                              print(widget.object.cartid);
                             },
                             child: Icon(Icons.delete_outline_rounded))
                       ],

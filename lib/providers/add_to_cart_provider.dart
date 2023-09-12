@@ -1,4 +1,6 @@
+import 'package:e_commerence_store_ui/models/cart_product_model.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
+import 'package:e_commerence_store_ui/services/add_to_cart.dart';
 import 'package:e_commerence_store_ui/services/send_order.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,18 +14,12 @@ class AddtocartProvider extends ChangeNotifier {
   int get subTotalCost => subTotal;
 
   void initializeList() {
-    list = AppConstants.addToCartLocal;
+    list = AppConstants.cartData;
     notifyListeners();
   }
 
-  void addtocartProduct(ProductsModel product) {
-    list.add(product);
-
-    calculateTotalCost();
-    notifyListeners();
-  }
-
-  void deleteProduct(ProductsModel product) {
+  void deleteProduct(ProductsModel product) async {
+    await AddToCart.deleteItem(product.cartid);
     list.remove(product);
     calculateTotalCost();
     notifyListeners();
@@ -46,15 +42,42 @@ class AddtocartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // void placeOrder(BuildContext context) {
+  //   // Extract product IDs from the list of ProductsModel objects
+  //   final List<String> productIds = list.map((product) => product.id).toList();
+  //    final List<int> productCounts = list.map((product) => product.countOfOrder).toList();
+
+  //   calculateTotalCost();
+
+  //   // Call the SendOrder.placeOrder function to send the order data to Firestore
+  //   SendOrder.placeOrder(context, productIds, total, subTotal,productCounts);
+
+  //   // Clear the cart after placing the order
+  //   list.clear();
+  //   calculateTotalCost();
+
+  //   notifyListeners();
+  // }
   void placeOrder(BuildContext context) {
     // Extract product IDs from the list of ProductsModel objects
     final List<String> productIds = list.map((product) => product.id).toList();
+    final List<String> vendorIds =
+        list.map((product) => product.vendorId).toList();
 
-    // Calculate total and subTotal
+    final List<int> productCounts =
+        list.map((product) => product.countOfOrder).toList();
+
     calculateTotalCost();
 
     // Call the SendOrder.placeOrder function to send the order data to Firestore
-    SendOrder.placeOrder(context, productIds, total, subTotal);
+    SendOrder.placeOrder(
+      context,
+      productIds,
+      vendorIds,
+      productCounts,
+      total,
+      subTotal,
+    );
 
     // Clear the cart after placing the order
     list.clear();

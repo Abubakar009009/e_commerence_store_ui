@@ -11,17 +11,20 @@ class ProductsModel {
   String approval;
   String id;
   int countOfOrder;
+  String cartid;
+  String vendorId;
 
-  ProductsModel({
-    required this.name,
-    required this.description,
-    required this.totalPrice,
-    required this.reviews,
-    required this.imageLink,
-    required this.category,
-    required this.price,
-    this.approval = '',
-    this.id = '',
-    this.countOfOrder = 0,
-  });
+  ProductsModel(
+      {required this.name,
+      required this.description,
+      required this.totalPrice,
+      required this.reviews,
+      required this.imageLink,
+      required this.category,
+      required this.price,
+      this.approval = '',
+      this.id = '',
+      this.countOfOrder = 0,
+      this.vendorId = '',
+      this.cartid = ''});
 }

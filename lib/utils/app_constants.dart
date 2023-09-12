@@ -1,6 +1,8 @@
+import 'package:e_commerence_store_ui/models/cart_product_model.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
 import 'package:e_commerence_store_ui/models/review_model.dart';
 
+import '../firebase_admin/model/order_model.dart';
 import '../models/brand_model.dart';
 import '../models/orders_model.dart';
 
@@ -10,10 +12,14 @@ class AppConstants {
   static List<ProductsModel> filaList = [];
   static List<String> wishlist = [];
   static List<ProductsModel> getDataList = [];
+  static List<ProductsModel> cartData = [];
 
   static List<ProductsModel> wishlistProducts = [];
   static List<ProductsModel> addToCartLocal = [];
-  static List<OrdersModel> orderList = [];
+  static List<ProductsModel> addToCartListFirebase = [];
+
+  static List<CartProduct> cartProducts = [];
+  static List<OrderModel> orderList = [];
 
   static bool username = false;
   static bool password = false;

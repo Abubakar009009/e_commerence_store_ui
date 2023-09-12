@@ -2,7 +2,6 @@ import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/views/screen_13.dart/screen_13.dart';
 import 'package:e_commerence_store_ui/views/screen_14.dart';
-import 'package:e_commerence_store_ui/views/screen_16.dart';
 import 'package:e_commerence_store_ui/widgets/cart_product.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';

@@ -1,11 +1,15 @@
 // ignore_for_file: avoid_print
 
 import 'package:another_flushbar/flushbar.dart';
+import 'package:e_commerence_store_ui/services/add_to_cart.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/cart_product_model.dart';
+import '../models/products_model.dart';
+import '../providers/add_to_cart_provider.dart';
 import '../providers/login_signup_state_provider.dart';
 import '../services/login_signup.dart';
 
@@ -33,7 +37,7 @@ class CommonFunctions {
     return false;
   }
 
-  bool checkLogin(BuildContext context) {
+  Future<void> checkLogin(BuildContext context) async {
     if (AppConstants.password && AppConstants.email) {
       AppConstants.password = false;
       // AppConstants.username = false;
@@ -42,7 +46,8 @@ class CommonFunctions {
       print(AppConstants.passwordGiven);
       print(AppConstants.usernameGiven);
 
-      obj.signIn(context, AppConstants.emailGiven, AppConstants.passwordGiven);
+      await obj.signIn(
+          context, AppConstants.emailGiven, AppConstants.passwordGiven);
       // context.read<LoginSignupStateProvider>().logginDone();
     } else {
       context.read<LoginSignupStateProvider>().logginDone();
@@ -53,17 +58,15 @@ class CommonFunctions {
         ),
       );
     }
-
-    return false;
   }
 
   static void showAddToCart(BuildContext context) {
     Flushbar(
       title: "Added to Cart",
       message: "The product has been added to your cart.",
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
       flushbarPosition: FlushbarPosition.TOP, // Show from the top
-      icon: Icon(
+      icon: const Icon(
         Icons.check_circle,
         color: Colors.white,
       ),
@@ -73,7 +76,7 @@ class CommonFunctions {
           Navigator.of(context).pop(); // Close the Flushbar
           // Add logic to navigate to the cart screen
         },
-        child: Text(
+        child: const Text(
           "View Cart",
           style: TextStyle(
             color: Colors.white,
@@ -88,9 +91,9 @@ class CommonFunctions {
     Flushbar(
       title: "Review Submitted",
       message: "Your review has been Successfully submited.",
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
       flushbarPosition: FlushbarPosition.TOP, // Show from the top
-      icon: Icon(
+      icon: const Icon(
         Icons.check_circle,
         color: Colors.white,
       ),
@@ -102,9 +105,9 @@ class CommonFunctions {
     Flushbar(
       title: "Address Changed",
       message: "Your address has been Successfully changed.",
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
       flushbarPosition: FlushbarPosition.TOP, // Show from the top
-      icon: Icon(
+      icon: const Icon(
         Icons.check_circle,
         color: Colors.white,
       ),
@@ -116,13 +119,41 @@ class CommonFunctions {
     Flushbar(
       title: "Card Saved",
       message: "Your card details has been Successfully saved.",
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
       flushbarPosition: FlushbarPosition.TOP, // Show from the top
-      icon: Icon(
+      icon: const Icon(
         Icons.check_circle,
         color: Colors.white,
       ),
       backgroundColor: AppColors.greenTick,
     ).show(context);
+  }
+
+  static Future<void> getCartProducts(BuildContext context) async {
+    AppConstants.cartProducts = await AddToCart.getAllItems();
+    print('add to cart length ${AppConstants.cartProducts.length}');
+
+    // Create a list to store matched ProductsModel objects
+    AppConstants.cartData = [];
+
+    // Iterate through cart products and filter ProductsModel objects
+    for (int i = 0; i < AppConstants.cartProducts.length; i++) {
+      String productId = AppConstants.cartProducts[i].productid;
+
+      // Find a matching ProductsModel object by comparing the 'id' property
+      ProductsModel? product = AppConstants.getDataList.firstWhere(
+        (product) => product.id == productId,
+        // orElse: () => null, // Return null if no match is found
+      );
+
+      // If a matching product is found, add it to the cartData list
+      if (product != null) {
+        product.cartid = AppConstants.cartProducts[i].itemid;
+        AppConstants.cartData.add(product);
+      }
+    }
+    print(' ----------------------------------${AppConstants.cartData.length}');
+    context.read<AddtocartProvider>().initializeList();
+    // Now, AppConstants.cartData contains the filtered ProductsModel objects.
   }
 }

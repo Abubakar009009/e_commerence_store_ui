@@ -1,8 +1,10 @@
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
+import 'package:e_commerence_store_ui/views/check_user_type.dart';
 import 'package:e_commerence_store_ui/views/orders_screen/order_screen.dart';
 import 'package:e_commerence_store_ui/views/screen_1.dart';
 import 'package:e_commerence_store_ui/views/screen_14.dart';
 import 'package:e_commerence_store_ui/views/screen_19.dart';
+import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:e_commerence_store_ui/widgets/drawer_row.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -214,7 +216,7 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (context) =>
-                        Screen1(), // Replace with your desired screen
+                        SplashScreen(), // Replace with your desired screen
                   ),
                   (route) => false, // Pop all existing routes from the stack
                 );

@@ -2,7 +2,9 @@ import 'package:e_commerence_store_ui/providers/login_signup_state_provider.dart
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
 import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
+import 'package:e_commerence_store_ui/views/check_user_type.dart';
 import 'package:e_commerence_store_ui/views/screen_5.dart';
+import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
 import 'package:e_commerence_store_ui/widgets/custom_textfield.dart';
 import 'package:flutter/cupertino.dart';
@@ -173,15 +175,14 @@ class _Screen4State extends State<Screen4> {
               ),
             ),
             bottomNavigationBar: CustomBottomButton(
-                onTab: () {
+                onTab: () async {
                   context.read<LoginSignupStateProvider>().logginIn();
                   final obj = CommonFunctions();
-                  if (obj.checkLogin(context)) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BottomNavBar()));
-                  }
+                  await obj.checkLogin(context);
+
+                  print('control comes here001');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CheckUserType()));
                 },
                 text: AppStrings.login),
           ),
