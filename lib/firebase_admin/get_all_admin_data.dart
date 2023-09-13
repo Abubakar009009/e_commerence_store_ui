@@ -1,19 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_constants_admin.dart';
 import 'model/order_model.dart';
 
 class GetDataAdmin {
-  Future<List<ProductsModel>> getDataFromFirebase() async {
+  static Future<List<ProductsModel>> getDataFromFirebase() async {
     try {
       final CollectionReference productsCollection =
           FirebaseFirestore.instance.collection('products');
 
-      final QuerySnapshot productSnapshot = await productsCollection.get();
+      final User? user = FirebaseAuth.instance.currentUser;
 
+      final QuerySnapshot productSnapshot = await productsCollection
+          .where('vendor_id', isEqualTo: user!.uid) // Filter by user_id
+          .get();
+
+      //  final QuerySnapshot productSnapshot = await productsCollection.get();
+      AppConstantsAdmin.productsList = [];
       for (QueryDocumentSnapshot productDocument in productSnapshot.docs) {
         final Map<String, dynamic> productData = productDocument.data()
             as Map<String, dynamic>; // Convert data to a Map

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerence_store_ui/providers/login_signup_state_provider.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
@@ -180,9 +182,10 @@ class _Screen4State extends State<Screen4> {
                   final obj = CommonFunctions();
                   await obj.checkLogin(context);
 
-                  print('control comes here001');
+                  //  print('control comes here001');
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CheckUserType()));
+                  // context.read<LoginSignupStateProvider>().logginDone();
                 },
                 text: AppStrings.login),
           ),

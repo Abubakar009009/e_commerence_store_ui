@@ -1,7 +1,5 @@
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
-import 'package:e_commerence_store_ui/views/check_user_type.dart';
 import 'package:e_commerence_store_ui/views/orders_screen/order_screen.dart';
-import 'package:e_commerence_store_ui/views/screen_1.dart';
 import 'package:e_commerence_store_ui/views/screen_14.dart';
 import 'package:e_commerence_store_ui/views/screen_19.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
@@ -24,6 +22,35 @@ class Screen17Drawer extends StatefulWidget {
 
 class _Screen17DrawerState extends State<Screen17Drawer> {
   bool forIos = false;
+
+  Future<bool?> _showLogoutConfirmationDialog(BuildContext context) async {
+    return showDialog<bool?>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout Confirmation'),
+          content: const Text('Are you sure you want to logout?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Close the dialog and return false (user canceled)
+                Navigator.of(context).pop(false);
+              },
+              child: const Text('No'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Close the dialog and return true (user confirmed)
+                Navigator.of(context).pop(true);
+              },
+              child: const Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -205,21 +232,28 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
             const Spacer(),
             GestureDetector(
               onTap: () async {
-                // Perform Firebase logout
-                try {
-                  await FirebaseAuth.instance.signOut();
-                } catch (e) {
-                  print('Error during logout: $e');
-                }
+                // Show a confirmation dialog
+                bool logoutConfirmed =
+                    await _showLogoutConfirmationDialog(context) ?? false;
 
-                // Navigate to Screen3 and replace all existing routes
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        SplashScreen(), // Replace with your desired screen
-                  ),
-                  (route) => false, // Pop all existing routes from the stack
-                );
+                // Check if the user confirmed the logout
+                if (logoutConfirmed) {
+                  // Perform Firebase logout
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                  } catch (e) {
+                    print('Error during logout: $e');
+                  }
+
+                  // Navigate to SplashScreen and replace all existing routes
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          SplashScreen(), // Replace with your desired screen
+                    ),
+                    (route) => false, // Pop all existing routes from the stack
+                  );
+                }
               },
               child: Row(
                 children: [

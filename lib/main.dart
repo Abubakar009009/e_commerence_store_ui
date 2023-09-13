@@ -4,6 +4,7 @@ import 'package:e_commerence_store_ui/providers/product_details_provider.dart';
 import 'package:e_commerence_store_ui/providers/signup_provider.dart';
 import 'package:e_commerence_store_ui/views/add_data_screen.dart';
 import 'package:e_commerence_store_ui/views/check_user_type.dart';
+import 'package:e_commerence_store_ui/views/main_splash_screen.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SplashScreen(),
+      home: const MainSplashScreen(),
     );
   }
 }

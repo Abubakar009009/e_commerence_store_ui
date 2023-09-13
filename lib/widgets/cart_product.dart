@@ -138,14 +138,51 @@ class _CartProductState extends State<CartProduct>
                             ),
                           ],
                         ),
+                        // GestureDetector(
+                        //     onTap: () {
+                        //       context
+                        //           .read<AddtocartProvider>()
+                        //           .deleteProduct(widget.object);
+                        //       print(widget.object.cartid);
+                        //     },
+                        //     child: Icon(Icons.delete_outline_rounded))
                         GestureDetector(
-                            onTap: () {
-                              context
-                                  .read<AddtocartProvider>()
-                                  .deleteProduct(widget.object);
-                              print(widget.object.cartid);
-                            },
-                            child: Icon(Icons.delete_outline_rounded))
+                          onTap: () {
+                            // Show a confirmation dialog
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Delete Product'),
+                                  content: Text(
+                                      'Are you sure you want to delete this product?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('No'),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pop(); // Close the dialog
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text('Yes'),
+                                      onPressed: () {
+                                        // Call the deleteProduct function
+                                        context
+                                            .read<AddtocartProvider>()
+                                            .deleteProduct(widget.object);
+                                        print(widget.object.cartid);
+                                        Navigator.of(context)
+                                            .pop(); // Close the dialog
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: Icon(Icons.delete_outline_rounded),
+                        )
                       ],
                     ),
                   ],

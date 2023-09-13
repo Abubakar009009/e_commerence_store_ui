@@ -5,8 +5,19 @@ class NoInternet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text('hello'),
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/no-internet.jpg',
+            ), // Replace with your asset image path
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
     );
   }
 }

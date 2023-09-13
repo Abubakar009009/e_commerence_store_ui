@@ -120,6 +120,7 @@ class _Screen19State extends State<Screen19> {
                       },
                       child: ProductWidget(
                         object: AppConstants.getDataList[index],
+                        heartColor: Colors.red.withOpacity(0.7),
                       ),
                     );
                   }),

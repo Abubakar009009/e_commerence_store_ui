@@ -2,13 +2,13 @@
 
 import 'package:e_commerence_store_ui/firebase_admin/get_all_admin_data.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
-import 'package:e_commerence_store_ui/views/add_data_screen.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../models/products_model.dart';
 import '../utils/app_constants_admin.dart';
+import 'add_show_products_admin.dart';
 
 class AdminShowOrder extends StatefulWidget {
   const AdminShowOrder({Key? key}) : super(key: key);
@@ -18,6 +18,34 @@ class AdminShowOrder extends StatefulWidget {
 }
 
 class _AdminShowOrderState extends State<AdminShowOrder> {
+  Future<bool?> _showLogoutConfirmationDialog(BuildContext context) async {
+    return showDialog<bool?>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout Confirmation'),
+          content: const Text('Are you sure you want to logout?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Close the dialog and return false (user canceled)
+                Navigator.of(context).pop(false);
+              },
+              child: const Text('No'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Close the dialog and return true (user confirmed)
+                Navigator.of(context).pop(true);
+              },
+              child: const Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   ProductsModel? findProductById(String itemId) {
     for (ProductsModel product in AppConstantsAdmin.productsList) {
       if (product.id == itemId) {
@@ -42,27 +70,27 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              // Log out the current user
-              await FirebaseAuth.instance.signOut();
+              // Show a confirmation dialog
+              bool logoutConfirmed =
+                  await _showLogoutConfirmationDialog(context) ?? false;
 
-              // Navigate to CheckUserType
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const SplashScreen()),
-              );
+              // Check if the user confirmed the logout
+              if (logoutConfirmed) {
+                // Log out the current user
+                await FirebaseAuth.instance.signOut();
+
+                // Navigate to CheckUserType
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SplashScreen()),
+                );
+              }
             },
           ),
         ],
       ),
       body: Stack(
         children: [
-          // Background Image
-          // Image.asset(
-          //   'assets/images/splash.png', // Replace with your image asset
-          //   fit: BoxFit.cover,
-          //   width: double.infinity,
-          //   height: double.infinity,
-          // ),
           Container(
             width: double.infinity,
             height: double.infinity,
@@ -283,7 +311,8 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddDataScreen()),
+            MaterialPageRoute(
+                builder: (context) => const AddShowProductsAdmin()),
           );
         },
         child: const Icon(Icons.add),

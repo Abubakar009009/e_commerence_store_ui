@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, non_constant_identifier_names
 
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
@@ -6,7 +6,6 @@ import 'package:e_commerence_store_ui/views/screen_1.dart';
 import 'package:e_commerence_store_ui/views/screen_3.dart';
 import 'package:e_commerence_store_ui/views/screen_4.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
-import 'package:e_commerence_store_ui/views/splash_screen_admin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import '../firebase_admin/get_all_admin_data.dart';
 import '../providers/add_to_cart_provider.dart';
+import '../providers/login_signup_state_provider.dart';
 import '../services/get_data.dart';
 import '../services/send_brand.dart';
 import '../services/send_order.dart';
@@ -35,6 +35,7 @@ class _CheckUserTypeState extends State<CheckUserType> {
   void initState() {
     super.initState();
     checkUserStatus(context);
+    context.read<LoginSignupStateProvider>().logginDone();
   }
 
   Future<void> _startTimer() async {
@@ -79,7 +80,7 @@ class _CheckUserTypeState extends State<CheckUserType> {
 
   Future<void> fetchData_admin() async {
     try {
-      AppConstantsAdmin.productsList = await getData.getDataFromFirebase();
+      AppConstantsAdmin.productsList = await GetDataAdmin.getDataFromFirebase();
     } catch (e) {
       // Handle any errors that occur during data fetching.
       print('Error fetching data: $e');

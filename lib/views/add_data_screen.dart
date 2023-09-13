@@ -1,3 +1,5 @@
+import 'package:e_commerence_store_ui/utils/app_colors.dart';
+import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -107,9 +109,9 @@ class _AddDataScreenState extends State<AddDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Product'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Add Product'),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -129,7 +131,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -143,7 +145,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -157,7 +159,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -171,7 +173,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -185,14 +187,22 @@ class _AddDataScreenState extends State<AddDataScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
-                  height: 10,
+                const SizedBox(
+                  height: 50,
                 ),
-                ElevatedButton(
-                  onPressed: _pickImages,
-                  child: const Text('Select Images'),
+                CustomTextButton(
+                  onTab: _pickImages,
+                  buttonText: 'Add Images',
+                  buttonColor: AppColors.appPurpleColor,
+                  addIcon: true,
+                  icon: Icon(Icons.add),
+                  radius: 10,
+                  fontColor: AppColors.AppWhiteColor,
+                  height: 50,
+                  width: 100, // You can adjust this width if needed
+                  fontSize: 15,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 if (_selectedImages!.isNotEmpty)
@@ -204,12 +214,19 @@ class _AddDataScreenState extends State<AddDataScreen> {
                       );
                     }).toList(),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                ElevatedButton(
-                  onPressed: _submitData,
-                  child: const Text('Submit'),
+                CustomTextButton(
+                  onTab: _submitData,
+                  buttonText: 'Submit',
+                  buttonColor: AppColors.greenTick,
+
+                  radius: 10,
+                  fontColor: AppColors.AppWhiteColor,
+                  height: 50,
+                  width: 100, // You can adjust this width if needed
+                  fontSize: 18,
                 ),
               ],
             ),

@@ -8,7 +8,9 @@ import 'package:shimmer/shimmer.dart';
 
 class ProductWidget extends StatelessWidget {
   final ProductsModel object;
-  const ProductWidget({required this.object, super.key});
+  final Color heartColor;
+  const ProductWidget(
+      {required this.object, this.heartColor = Colors.grey, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class ProductWidget extends StatelessWidget {
                     },
                     child: Icon(
                       Icons.favorite,
-                      color: AppColors.appGreyText,
+                      color: heartColor,
                     ),
                   ),
                 )

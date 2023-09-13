@@ -44,7 +44,7 @@ class LoginSignup {
 
       return user;
     } catch (e) {
-      context.read<LoginSignupStateProvider>().logginDone();
+      context.read<LoginSignupStateProvider>().signupDone();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('This Email already exists please Login'),
@@ -60,11 +60,11 @@ class LoginSignup {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      print('----------------error');
+      //  print('----------------error');
       User? user = userCredential.user;
 
-      print('-------------------------------signin done');
-      context.read<LoginSignupStateProvider>().logginDone();
+      //  print('-------------------------------signin done');
+
       return user;
     } catch (e) {
       print('there is an exception');

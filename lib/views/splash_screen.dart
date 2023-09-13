@@ -1,4 +1,5 @@
 import 'package:e_commerence_store_ui/views/check_user_type.dart';
+import 'package:e_commerence_store_ui/views/no_internet.dart';
 import 'package:e_commerence_store_ui/views/screen_1.dart';
 import 'package:e_commerence_store_ui/views/screen_3.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (connectivityResult == ConnectivityResult.none) {
       // No internet connection, navigate to Screen20 or display an offline message.
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const Text('hello')),
+        MaterialPageRoute(builder: (context) => const NoInternet()),
       );
     } else {
       if (user != null) {
@@ -51,14 +52,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Image.asset(
-          AppAssets.splashscreen,
-          width: double.infinity,
-          fit: BoxFit.fitWidth,
-        ), // Path to your splash image
-      ),
-    );
+    return const Scaffold();
   }
 }
