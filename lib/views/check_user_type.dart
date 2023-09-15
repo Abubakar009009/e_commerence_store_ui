@@ -3,8 +3,6 @@
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
 import 'package:e_commerence_store_ui/views/screen_1.dart';
-import 'package:e_commerence_store_ui/views/screen_3.dart';
-import 'package:e_commerence_store_ui/views/screen_4.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -139,6 +137,7 @@ class _CheckUserTypeState extends State<CheckUserType> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white,
       body: Center(child: CircularProgressIndicator()),
     );
   }

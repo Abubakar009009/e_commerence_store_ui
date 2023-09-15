@@ -49,15 +49,63 @@ class GetDataAdmin {
   }
 
   static Future<List<OrderModel>> getAllOrders() async {
+    // try {
+    //   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    //   // Reference to the "orders" collection
+    //   final CollectionReference ordersCollection =
+    //       firestore.collection('orders');
+
+    //   // Get all documents in the "orders" collection
+    //   final QuerySnapshot ordersSnapshot = await ordersCollection.get();
+
+    //   // Extract order data from the documents
+    //   final List<OrderModel> ordersList = ordersSnapshot.docs.map((doc) {
+    //     final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+    //     final List<String> items = List<String>.from(data['items'] ?? []);
+    //     final List<int> counts = data['count']
+    //         .map<int>((count) => int.parse(count as String))
+    //         .toList();
+    //     final int total = data['total'] ?? 0;
+    //     final int subTotal = data['subtotal'] ?? 0;
+    //     final Timestamp timestamp = data['timestamp'] as Timestamp;
+    //     final DateTime dateTime = timestamp.toDate();
+    //     final String status = data['status'] ?? 'Pending';
+    //     final String idCustomer = data['user_id'] ?? '';
+
+    //     return OrderModel(
+    //       items: items,
+    //       counts: counts,
+    //       total: total,
+    //       subTotal: subTotal,
+    //       dateTime: dateTime,
+    //       status: status,
+    //       idCustomer: idCustomer,
+    //     );
+    //   }).toList();
+
+    //   return ordersList;
+    // } catch (e) {
+    //   print('Error fetching orders: $e');
+    //   throw e;
+    // }
     try {
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      // Get the current user's UID
+      final String currentUserUid = auth.currentUser!.uid;
 
       // Reference to the "orders" collection
       final CollectionReference ordersCollection =
           firestore.collection('orders');
+      print(currentUserUid);
 
-      // Get all documents in the "orders" collection
-      final QuerySnapshot ordersSnapshot = await ordersCollection.get();
+      // Query for orders where the "vendor_ids" list contains the current user's UID
+      final QuerySnapshot ordersSnapshot = await ordersCollection
+          .where('vendor_id', arrayContains: currentUserUid)
+          .get();
 
       // Extract order data from the documents
       final List<OrderModel> ordersList = ordersSnapshot.docs.map((doc) {
@@ -73,7 +121,6 @@ class GetDataAdmin {
         final DateTime dateTime = timestamp.toDate();
         final String status = data['status'] ?? 'Pending';
         final String idCustomer = data['user_id'] ?? '';
-        //    final String vendorID = data['vendor_id'] ?? '';
 
         return OrderModel(
           items: items,
@@ -88,8 +135,9 @@ class GetDataAdmin {
 
       return ordersList;
     } catch (e) {
-      print('Error fetching orders: $e');
-      throw e;
+      // Handle exceptions here
+      print('Error: $e');
+      return []; // Return an empty list or handle the error as needed
     }
   }
 

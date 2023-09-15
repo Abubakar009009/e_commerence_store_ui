@@ -2,13 +2,12 @@
 
 import 'package:e_commerence_store_ui/firebase_admin/get_all_admin_data.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
-import 'package:e_commerence_store_ui/views/splash_screen.dart';
+import 'package:e_commerence_store_ui/views/admin_drawer.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../models/products_model.dart';
 import '../utils/app_constants_admin.dart';
-import 'add_show_products_admin.dart';
+import 'add_data_screen.dart';
 
 class AdminShowOrder extends StatefulWidget {
   const AdminShowOrder({Key? key}) : super(key: key);
@@ -18,33 +17,7 @@ class AdminShowOrder extends StatefulWidget {
 }
 
 class _AdminShowOrderState extends State<AdminShowOrder> {
-  Future<bool?> _showLogoutConfirmationDialog(BuildContext context) async {
-    return showDialog<bool?>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Logout Confirmation'),
-          content: const Text('Are you sure you want to logout?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // Close the dialog and return false (user canceled)
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('No'),
-            ),
-            TextButton(
-              onPressed: () {
-                // Close the dialog and return true (user confirmed)
-                Navigator.of(context).pop(true);
-              },
-              child: const Text('Yes'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   ProductsModel? findProductById(String itemId) {
     for (ProductsModel product in AppConstantsAdmin.productsList) {
@@ -59,44 +32,25 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
+        backgroundColor: AppColors.AppWhiteColor,
         title: const Text(
           'Orders',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
-        automaticallyImplyLeading: false, // Remove the back button
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              // Show a confirmation dialog
-              bool logoutConfirmed =
-                  await _showLogoutConfirmationDialog(context) ?? false;
-
-              // Check if the user confirmed the logout
-              if (logoutConfirmed) {
-                // Log out the current user
-                await FirebaseAuth.instance.signOut();
-
-                // Navigate to CheckUserType
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SplashScreen()),
-                );
-              }
-            },
-          ),
-        ],
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer(); // Open the drawer
+          },
+        ),
       ),
+      drawer: AdminDrawer(),
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: AppColors.appGreyBackground,
-          ),
-
           // Content
           ListView.builder(
             itemCount: AppConstantsAdmin.orders.length,
@@ -106,6 +60,9 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
                 padding: const EdgeInsets.only(
                     left: 8.0, right: 8, top: 10, bottom: 10),
                 child: Card(
+                  elevation: 3,
+                  color: AppColors.AppWhiteColor,
+                  shadowColor: AppColors.appGreyBackground,
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 20.0, right: 8, top: 10, bottom: 10),
@@ -126,18 +83,13 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
                           height: 15,
                         ),
                         RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
-                              const TextSpan(
-                                text: 'Customer ID : ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
                               TextSpan(
-                                text: '${userData.idCustomer}',
-                                style: const TextStyle(
+                                text: 'Products : ',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
                               ),
@@ -162,32 +114,46 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
                             // Check if a matching product was found
                             if (product != null) {
                               return ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                leading: Container(
-                                  height: 100,
-                                  width: 64.0,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      product.imageLink[0],
-                                      fit: BoxFit.cover,
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Container(
+                                    height: 100,
+                                    width: 64.0,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        product.imageLink[0],
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                title: Text(
-                                  ' ${product.name}',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
+                                  title: Text(
+                                    ' ${product.category}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                                subtitle: Text(
-                                  'Quantity: $count',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              );
+                                  subtitle: RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Quantity: ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.appGreyText,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: '$count',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.appGreyText,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
                             } else {
-                              return Text('Product with ID $item not found');
+                              return Container();
                             }
                           },
                         ),
@@ -289,7 +255,7 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
                               context,
                               userData.idCustomer,
                             ),
-                            buttonText: 'Approve',
+                            buttonText: 'Accept',
                             buttonColor: Colors.black.withOpacity(0.7),
                             radius: 20,
                             fontColor: AppColors.AppWhiteColor,
@@ -311,11 +277,14 @@ class _AdminShowOrderState extends State<AdminShowOrder> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => const AddShowProductsAdmin()),
+            MaterialPageRoute(builder: (context) => const AddDataScreen()),
           );
         },
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.black.withOpacity(0.7),
+        child: Icon(
+          Icons.add,
+          color: AppColors.AppWhiteColor,
+        ),
       ),
     );
   }

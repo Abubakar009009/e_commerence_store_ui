@@ -6,6 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/send_data_admin_provider.dart';
 
 class AddDataScreen extends StatefulWidget {
   const AddDataScreen({Key? key}) : super(key: key);
@@ -26,6 +29,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
 
   Future<void> _submitData() async {
     if (_formKey.currentState!.validate() && _selectedImages!.isNotEmpty) {
+      context.read<SendDataAdminProvider>().dataSending();
       final FirebaseStorage storage = FirebaseStorage.instance;
       final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -78,7 +82,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
       setState(() {
         _selectedImages!.clear();
       });
-
+      context.read<SendDataAdminProvider>().dataSendingComplete();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Product added successfully!'),
@@ -109,129 +113,142 @@ class _AddDataScreenState extends State<AddDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Add Product'),
-      // ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10),
-            child: ListView(
-              children: [
-                TextFormField(
-                  controller: _nameController,
-                  decoration:
-                      const InputDecoration(labelText: 'Name of Product'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the name of the product.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextFormField(
-                  controller: _categoryController,
-                  decoration:
-                      const InputDecoration(labelText: 'Category of Product'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the category of the product.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextFormField(
-                  controller: _priceController,
-                  decoration:
-                      const InputDecoration(labelText: 'Price of Product'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the price of the product.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextFormField(
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(
-                      labelText: 'Description of Product'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the description of the product.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextFormField(
-                  controller: _totalPriceController,
-                  decoration: const InputDecoration(
-                      labelText: 'Total Price of Product'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the total price of the product.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                CustomTextButton(
-                  onTab: _pickImages,
-                  buttonText: 'Add Images',
-                  buttonColor: AppColors.appPurpleColor,
-                  addIcon: true,
-                  icon: Icon(Icons.add),
-                  radius: 10,
-                  fontColor: AppColors.AppWhiteColor,
-                  height: 50,
-                  width: 100, // You can adjust this width if needed
-                  fontSize: 15,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                if (_selectedImages!.isNotEmpty)
-                  Column(
-                    children: _selectedImages!.map((image) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.file(File(image.path)),
-                      );
-                    }).toList(),
-                  ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextButton(
-                  onTab: _submitData,
-                  buttonText: 'Submit',
-                  buttonColor: AppColors.greenTick,
+      appBar: AppBar(
+        title: const Text('Add Product'),
+        centerTitle: true,
+      ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 10),
+                child: ListView(
+                  children: [
+                    TextFormField(
+                      controller: _nameController,
+                      decoration:
+                          const InputDecoration(labelText: 'Name of Product'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the name of the product.';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: _categoryController,
+                      decoration: const InputDecoration(
+                          labelText: 'Category of Product'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the category of the product.';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: _priceController,
+                      decoration:
+                          const InputDecoration(labelText: 'Price of Product'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the price of the product.';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: _descriptionController,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                          labelText: 'Description of Product'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the description of the product.';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: _totalPriceController,
+                      decoration: const InputDecoration(
+                          labelText: 'Total Price of Product'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the total price of the product.';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    CustomTextButton(
+                      onTab: _pickImages,
+                      buttonText: 'Add Images',
+                      buttonColor: Colors.black.withOpacity(0.7),
+                      addIcon: true,
+                      icon: Icon(Icons.add),
+                      radius: 10,
+                      fontColor: AppColors.AppWhiteColor,
+                      height: 50,
+                      width: 100, // You can adjust this width if needed
+                      fontSize: 15,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    if (_selectedImages!.isNotEmpty)
+                      Column(
+                        children: _selectedImages!.map((image) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.file(File(image.path)),
+                          );
+                        }).toList(),
+                      ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomTextButton(
+                      onTab: _submitData,
+                      buttonText: 'Submit',
+                      buttonColor: AppColors.appPurpleColor,
 
-                  radius: 10,
-                  fontColor: AppColors.AppWhiteColor,
-                  height: 50,
-                  width: 100, // You can adjust this width if needed
-                  fontSize: 18,
+                      radius: 10,
+                      fontColor: AppColors.AppWhiteColor,
+                      height: 50,
+                      width: 100, // You can adjust this width if needed
+                      fontSize: 18,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
+          if (context.watch<SendDataAdminProvider>().getisSending)
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: AppColors.AppWhiteColor,
+              child: const Center(child: CircularProgressIndicator()),
+            )
+        ],
       ),
     );
   }

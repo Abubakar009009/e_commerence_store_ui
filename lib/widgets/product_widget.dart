@@ -51,10 +51,11 @@ class ProductWidget extends StatelessWidget {
                     onTap: () {
                       WishlistData.addToWishlist(object.id);
                     },
-                    child: Icon(
-                      Icons.favorite,
-                      color: heartColor,
-                    ),
+                    child: Image.asset('assets/icons/Heart (3).png'),
+                    // child: Icon(
+                    //   Icons.favorite,
+                    //   color: heartColor,
+                    // ),
                   ),
                 )
               ],
@@ -77,7 +78,7 @@ class ProductWidget extends StatelessWidget {
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            '\$ ${object.price}',
+            '\$${object.price}',
             style: TextStyle(
                 fontSize: GetScreenSize.getScreenWidth(context) * 0.04,
                 color: AppColors.appBlackText,

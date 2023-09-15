@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
 import 'package:e_commerence_store_ui/providers/add_to_cart_provider.dart';
-import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -64,7 +63,7 @@ class _CartProductState extends State<CartProduct>
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height,
               width: GetScreenSize.getScreenWidth(context) * 0.3,
               child: ClipRRect(
@@ -82,7 +81,7 @@ class _CartProductState extends State<CartProduct>
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: GetScreenSize.getScreenWidth(context) * 0.53,
               height: MediaQuery.of(context).size.height,
               // color: Colors.red,
@@ -93,8 +92,11 @@ class _CartProductState extends State<CartProduct>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Text(
-                      widget.object.name,
+                      widget.object.category,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(

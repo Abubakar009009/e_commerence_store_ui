@@ -1,11 +1,10 @@
 import 'package:e_commerence_store_ui/firebase_options.dart';
 import 'package:e_commerence_store_ui/providers/login_signup_state_provider.dart';
 import 'package:e_commerence_store_ui/providers/product_details_provider.dart';
+import 'package:e_commerence_store_ui/providers/send_data_admin_provider.dart';
 import 'package:e_commerence_store_ui/providers/signup_provider.dart';
-import 'package:e_commerence_store_ui/views/add_data_screen.dart';
-import 'package:e_commerence_store_ui/views/check_user_type.dart';
 import 'package:e_commerence_store_ui/views/main_splash_screen.dart';
-import 'package:e_commerence_store_ui/views/splash_screen.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -25,6 +24,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ProductDetailsProvider()),
         ChangeNotifierProvider(create: (context) => LoginSignupStateProvider()),
         ChangeNotifierProvider(create: (context) => AddtocartProvider()),
+        ChangeNotifierProvider(create: (context) => SendDataAdminProvider()),
       ],
       child: const MyApp(),
     ),

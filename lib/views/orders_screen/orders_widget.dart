@@ -1,8 +1,6 @@
-import 'package:e_commerence_store_ui/models/orders_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../firebase_admin/model/order_model.dart';
-import '../../models/products_model.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/media_query.dart';
 

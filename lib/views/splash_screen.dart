@@ -1,13 +1,11 @@
 import 'package:e_commerence_store_ui/views/check_user_type.dart';
 import 'package:e_commerence_store_ui/views/no_internet.dart';
 import 'package:e_commerence_store_ui/views/screen_1.dart';
-import 'package:e_commerence_store_ui/views/screen_3.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import '../services/get_data.dart';
-import '../utils/app_assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

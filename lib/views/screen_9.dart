@@ -2,7 +2,6 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerence_store_ui/models/products_model.dart';
-import 'package:e_commerence_store_ui/providers/add_to_cart_provider.dart';
 import 'package:e_commerence_store_ui/providers/product_details_provider.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
