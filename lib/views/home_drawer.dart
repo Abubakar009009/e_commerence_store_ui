@@ -1,7 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/views/orders_screen/order_screen.dart';
-import 'package:e_commerence_store_ui/views/screen_14.dart';
-import 'package:e_commerence_store_ui/views/screen_19.dart';
+import 'package:e_commerence_store_ui/views/payment_page.dart';
+import 'package:e_commerence_store_ui/views/wishlist_screen.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:e_commerence_store_ui/widgets/drawer_row.dart';
@@ -13,14 +15,14 @@ import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_strings.dart';
 
-class Screen17Drawer extends StatefulWidget {
-  const Screen17Drawer({super.key});
+class HomeDrawer extends StatefulWidget {
+  const HomeDrawer({super.key});
 
   @override
-  State<Screen17Drawer> createState() => _Screen17DrawerState();
+  State<HomeDrawer> createState() => _HomeDrawerState();
 }
 
-class _Screen17DrawerState extends State<Screen17Drawer> {
+class _HomeDrawerState extends State<HomeDrawer> {
   bool forIos = false;
 
   Future<bool?> _showLogoutConfirmationDialog(BuildContext context) async {
@@ -198,7 +200,7 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
                 // Navigate to Screen16
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Screen14()),
+                  MaterialPageRoute(builder: (context) => const PaymentPage()),
                 );
               },
               child: DrawerRow(
@@ -216,7 +218,8 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
                 // Navigate to Screen16
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Screen19()),
+                  MaterialPageRoute(
+                      builder: (context) => const WishlistScreen()),
                 );
               },
               child: DrawerRow(
@@ -242,14 +245,14 @@ class _Screen17DrawerState extends State<Screen17Drawer> {
                   try {
                     await FirebaseAuth.instance.signOut();
                   } catch (e) {
-                    print('Error during logout: $e');
+                    //  print('Error during logout: $e');
                   }
 
                   // Navigate to SplashScreen and replace all existing routes
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                       builder: (context) =>
-                          SplashScreen(), // Replace with your desired screen
+                          const SplashScreen(), // Replace with your desired screen
                     ),
                     (route) => false, // Pop all existing routes from the stack
                   );

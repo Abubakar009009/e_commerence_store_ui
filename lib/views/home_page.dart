@@ -286,9 +286,9 @@ import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
-import 'package:e_commerence_store_ui/views/screen_17_drawer.dart';
-import 'package:e_commerence_store_ui/views/screen_18.dart';
-import 'package:e_commerence_store_ui/views/screen_9.dart';
+import 'package:e_commerence_store_ui/views/home_drawer.dart';
+import 'package:e_commerence_store_ui/views/brand_products.dart';
+import 'package:e_commerence_store_ui/views/product_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/media_query.dart';
@@ -296,14 +296,14 @@ import '../widgets/bag_custom.dart';
 import '../widgets/brand_custom_widget.dart';
 import '../widgets/product_widget.dart';
 
-class Screen8 extends StatefulWidget {
-  const Screen8({Key? key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key});
 
   @override
-  _Screen8State createState() => _Screen8State();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _Screen8State extends State<Screen8> {
+class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _searchController = TextEditingController();
   List<String> _filteredBrands = [];
@@ -346,7 +346,7 @@ class _Screen8State extends State<Screen8> {
       },
       child: Scaffold(
         key: _scaffoldKey,
-        drawer: const Screen17Drawer(),
+        drawer: const HomeDrawer(),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
@@ -580,7 +580,7 @@ class _Screen8State extends State<Screen8> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: ((context) => Screen18(
+                                builder: ((context) => BrandProducts(
                                       object: AppConstants.brandList[index],
                                     )),
                               ),
@@ -636,7 +636,7 @@ class _Screen8State extends State<Screen8> {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.67,
+                      childAspectRatio: 0.56,
                       crossAxisSpacing:
                           GetScreenSize.getScreenWidth(context) * 0.04,
                       mainAxisSpacing:
@@ -648,7 +648,7 @@ class _Screen8State extends State<Screen8> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Screen9(
+                              builder: (context) => ProductDeatilsPage(
                                 object: AppConstants.getDataList[index],
                               ),
                             ),

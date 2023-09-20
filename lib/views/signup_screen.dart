@@ -11,14 +11,14 @@ import 'package:provider/provider.dart';
 
 import '../providers/login_signup_state_provider.dart';
 
-class Screen3 extends StatefulWidget {
-  const Screen3({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<Screen3> createState() => _Screen3State();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _Screen3State extends State<Screen3> {
+class _SignupScreenState extends State<SignupScreen> {
   bool forIos = true;
   @override
   Widget build(BuildContext context) {

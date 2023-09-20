@@ -2,7 +2,7 @@
 
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
-import 'package:e_commerence_store_ui/views/screen_1.dart';
+import 'package:e_commerence_store_ui/views/gender_selection.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -53,7 +53,7 @@ class _CheckUserTypeState extends State<CheckUserType> {
     } else {
       // User is not logged in, navigate to Screen1.
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const Screen1()),
+        MaterialPageRoute(builder: (context) => const GenderSelection()),
       );
     }
   }
@@ -65,7 +65,7 @@ class _CheckUserTypeState extends State<CheckUserType> {
       // Now you have the productsList, you can use it as needed.
     } catch (e) {
       // Handle any errors that occur during data fetching.
-      print('Error fetching data: $e');
+      //  print('Error fetching data: $e');
     }
   }
 
@@ -81,17 +81,17 @@ class _CheckUserTypeState extends State<CheckUserType> {
       AppConstantsAdmin.productsList = await GetDataAdmin.getDataFromFirebase();
     } catch (e) {
       // Handle any errors that occur during data fetching.
-      print('Error fetching data: $e');
+      //  print('Error fetching data: $e');
     }
   }
 
   Future<void> fetchOrder_admin() async {
     try {
       AppConstantsAdmin.orders = await GetDataAdmin.getAllOrders();
-      print(AppConstantsAdmin.orderUsers.length);
+      //print(AppConstantsAdmin.orderUsers.length);
     } catch (e) {
       // Handle any errors that occur during data fetching.
-      print('Error fetching data: $e');
+      // print('Error fetching data: $e');
     }
   }
 
@@ -123,11 +123,11 @@ class _CheckUserTypeState extends State<CheckUserType> {
         }
       } else {
         // User document doesn't exist, handle accordingly
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => SplashScreen()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const SplashScreen()));
       }
     } else {
-      print('control comes here');
+      // print('control comes here');
       // User is not logged in, navigate to Screen4
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => const SplashScreen()));

@@ -1,8 +1,8 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
-import 'package:e_commerence_store_ui/views/screen_4.dart';
+import 'package:e_commerence_store_ui/views/login_screen.dart';
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
-import 'package:e_commerence_store_ui/views/screen_3.dart';
+import 'package:e_commerence_store_ui/views/signup_screen.dart';
 import 'package:e_commerence_store_ui/widgets/back_custom.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../utils/media_query.dart';
 
-class Screen2 extends StatelessWidget {
-  const Screen2({super.key});
+class SignupOption extends StatelessWidget {
+  const SignupOption({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +89,10 @@ class Screen2 extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Screen4()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
                 },
                 child: RichText(
                   text: TextSpan(
@@ -124,7 +126,7 @@ class Screen2 extends StatelessWidget {
         text: AppStrings.createAnAccount,
         onTab: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Screen3()));
+              MaterialPageRoute(builder: (context) => const SignupScreen()));
         },
       ),
     );

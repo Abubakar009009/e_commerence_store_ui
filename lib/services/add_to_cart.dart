@@ -29,11 +29,11 @@ class AddToCart {
         await itemDocRef.update({'itemid': itemDocRef.id});
         await CommonFunctions.getCartProducts(context);
       } else {
-        print('User not logged in.');
+        //   print('User not logged in.');
       }
     } catch (e) {
-      print('Error adding to cart: $e');
-      throw e;
+      //  print('Error adding to cart: $e');
+      // throw e;
     }
   }
 
@@ -60,11 +60,11 @@ class AddToCart {
 
         return items;
       } else {
-        print('User not logged in.');
+        //  print('User not logged in.');
         return [];
       }
     } catch (e) {
-      print('Error fetching cart items: $e');
+      //print('Error fetching cart items: $e');
       throw e;
     }
   }
@@ -84,10 +84,10 @@ class AddToCart {
         // Delete the item with the specified itemId
         await userCartCollection.doc(itemId).delete();
       } else {
-        print('User not logged in.');
+        //  print('User not logged in.');
       }
     } catch (e) {
-      print('Error deleting item: $e');
+      // print('Error deleting item: $e');
       throw e;
     }
   }

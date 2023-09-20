@@ -1,52 +1,20 @@
-// ignore_for_file: must_be_immutable
-
+import 'package:e_commerence_store_ui/utils/app_constants.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
-import 'package:e_commerence_store_ui/utils/media_query.dart';
-import 'package:e_commerence_store_ui/views/screen_9.dart';
-import 'package:e_commerence_store_ui/widgets/brand_custom_widget.dart';
+import 'package:e_commerence_store_ui/views/product_detail_page.dart';
 import 'package:flutter/material.dart';
 
-import '../models/brand_model.dart';
-import '../models/products_model.dart';
 import '../utils/app_colors.dart';
-import '../utils/app_constants.dart';
-import '../widgets/bag_custom.dart';
+import '../utils/media_query.dart';
 import '../widgets/product_widget.dart';
 
-class Screen18 extends StatefulWidget {
-  final BrandModel object;
-  List<ProductsModel> list = [];
-  Screen18({required this.object, super.key});
+class WishlistScreen extends StatefulWidget {
+  const WishlistScreen({super.key});
 
   @override
-  State<Screen18> createState() => _Screen18State();
+  State<WishlistScreen> createState() => _WishlistScreenState();
 }
 
-class _Screen18State extends State<Screen18> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    if (widget.object.name == 'Adidas') {
-      setState(() {
-        widget.list = AppConstants.adidasList;
-      });
-    } else if (widget.object.name == 'Nike') {
-      setState(() {
-        widget.list = AppConstants.nikeList;
-      });
-    } else if (widget.object.name == 'Fila') {
-      setState(() {
-        widget.list = AppConstants.filaList;
-      });
-    } else {
-      setState(() {
-        widget.list = AppConstants.getDataList;
-      });
-    }
-    print(widget.object.name);
-  }
-
+class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,24 +29,18 @@ class _Screen18State extends State<Screen18> {
             children: [
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.arrow_back),
-                    ),
+                  Spacer(),
+                  Text(
+                    'Wishlist',
+                    style: TextStyle(
+                        color: AppColors.appBlackText,
+                        fontSize: GetScreenSize.getScreenWidth(context) * 0.055,
+                        fontWeight: FontWeight.w600),
                   ),
-                  const Spacer(),
-                  BrandWiget(object: widget.object),
-                  const Spacer(),
-                  const BagCustom(),
+                  Spacer(),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
               Row(
@@ -108,21 +70,20 @@ class _Screen18State extends State<Screen18> {
                   Container(
                     decoration: BoxDecoration(
                         color: AppColors.appGreyBackground,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: Padding(
-                      padding: const EdgeInsets.all(7.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
                           Icon(
-                            Icons.sort,
+                            Icons.edit_location_alt_outlined,
                             color: AppColors.appBlackText,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
                           ),
                           Text(
-                            AppStrings.sort,
+                            AppStrings.edit,
                             style: TextStyle(
                                 color: AppColors.appBlackText,
                                 fontWeight: FontWeight.w400,
@@ -137,13 +98,12 @@ class _Screen18State extends State<Screen18> {
                 ],
               ),
               GridView.builder(
-                  // padding: EdgeInsets.all(screenSize * 0.17),
-                  itemCount: widget.list.length,
+                  itemCount: AppConstants.wishlistProducts.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.67,
+                      childAspectRatio: 0.56,
                       crossAxisSpacing:
                           GetScreenSize.getScreenWidth(context) * 0.04,
                       mainAxisSpacing:
@@ -154,11 +114,13 @@ class _Screen18State extends State<Screen18> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    Screen9(object: widget.list[index])));
+                                builder: (context) => ProductDeatilsPage(
+                                    object:
+                                        AppConstants.wishlistProducts[index])));
                       },
                       child: ProductWidget(
-                        object: widget.list[index],
+                        object: AppConstants.getDataList[index],
+                        heartColor: Colors.black.withOpacity(0.7),
                       ),
                     );
                   }),

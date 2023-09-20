@@ -1,7 +1,7 @@
 import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
-import 'package:e_commerence_store_ui/views/screen_13.dart/screen_13.dart';
-import 'package:e_commerence_store_ui/views/screen_14.dart';
+import 'package:e_commerence_store_ui/views/address_page/address_page.dart';
+import 'package:e_commerence_store_ui/views/payment_page.dart';
 import 'package:e_commerence_store_ui/widgets/cart_product.dart';
 import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +11,14 @@ import '../providers/add_to_cart_provider.dart';
 import '../utils/app_strings.dart';
 import '../utils/media_query.dart';
 
-class Screen12 extends StatefulWidget {
-  const Screen12({super.key});
+class CartPage extends StatefulWidget {
+  const CartPage({super.key});
 
   @override
-  State<Screen12> createState() => _Screen12State();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _Screen12State extends State<Screen12> {
+class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     // TODO: implement initState
@@ -51,12 +51,12 @@ class _Screen12State extends State<Screen12> {
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w600),
                   ),
-                  Expanded(child: SizedBox()),
+                  const Expanded(child: SizedBox()),
                 ],
               ),
               ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: context
                         .watch<AddtocartProvider>()
                         .cartProducts
@@ -70,7 +70,7 @@ class _Screen12State extends State<Screen12> {
                           object: context
                               .watch<AddtocartProvider>()
                               .cartProducts[index]),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   );
                 },
@@ -87,8 +87,10 @@ class _Screen12State extends State<Screen12> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Screen13()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddressPage()));
                     },
                     child: Icon(
                       Icons.arrow_forward_ios,
@@ -121,7 +123,7 @@ class _Screen12State extends State<Screen12> {
                 ),
                 selected: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -136,8 +138,10 @@ class _Screen12State extends State<Screen12> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Screen14()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PaymentPage()));
                     },
                     child: Icon(
                       Icons.arrow_forward_ios,
@@ -234,7 +238,7 @@ class _Screen12State extends State<Screen12> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               CustomTextButton(

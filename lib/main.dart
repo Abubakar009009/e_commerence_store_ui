@@ -12,6 +12,16 @@ import 'package:provider/provider.dart';
 
 import 'providers/add_to_cart_provider.dart';
 
+///
+///
+///
+
+/////for details you can contact at whatsapp +92 309 9604414
+
+//
+//
+
+//
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

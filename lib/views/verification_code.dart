@@ -1,7 +1,7 @@
 import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/views/screen_6widets.dart/otp_container.dart';
-import 'package:e_commerence_store_ui/views/screen_7.dart';
+import 'package:e_commerence_store_ui/views/new_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,8 +10,8 @@ import '../utils/media_query.dart';
 import '../widgets/back_custom.dart';
 import '../widgets/custom_bottom_buttons.dart';
 
-class Screen6 extends StatelessWidget {
-  const Screen6({super.key});
+class VerificationCode extends StatelessWidget {
+  const VerificationCode({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ class Screen6 extends StatelessWidget {
       bottomSheet: CustomBottomButton(
           onTab: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Screen7()));
+                MaterialPageRoute(builder: (context) => const NewPassword()));
           },
           text: AppStrings.confirmcode),
     );

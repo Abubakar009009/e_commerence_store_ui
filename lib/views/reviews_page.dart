@@ -1,7 +1,7 @@
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
 import 'package:e_commerence_store_ui/utils/media_query.dart';
-import 'package:e_commerence_store_ui/views/screen_11.dart';
+import 'package:e_commerence_store_ui/views/add_review_page.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
@@ -10,9 +10,9 @@ import '../widgets/back_custom_middle.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_reviewbar.dart';
 
-class Screen10 extends StatelessWidget {
+class ReviewsPage extends StatelessWidget {
   final List<ReviewModel> list;
-  const Screen10({required this.list, super.key});
+  const ReviewsPage({required this.list, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class Screen10 extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  BackCustomMiddle(),
-                  Expanded(child: SizedBox()),
+                  const BackCustomMiddle(),
+                  const Expanded(child: SizedBox()),
                   Text(
                     'Reviews',
                     style: TextStyle(
@@ -39,8 +39,8 @@ class Screen10 extends StatelessWidget {
                         fontSize: GetScreenSize.getScreenWidth(context) * 0.060,
                         fontWeight: FontWeight.w600),
                   ),
-                  Expanded(child: SizedBox()),
-                  Icon(
+                  const Expanded(child: SizedBox()),
+                  const Icon(
                     Icons.arrow_back,
                     color: Colors.transparent,
                   ),
@@ -64,7 +64,7 @@ class Screen10 extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text('4.8'),
+                          const Text('4.8'),
                           Container(
                             // color: Colors.blue,
                             width: GetScreenSize.getScreenWidth(context) * 0.2,
@@ -86,15 +86,17 @@ class Screen10 extends StatelessWidget {
                     buttonText: AppStrings.addReviewButton,
                     fontSize: GetScreenSize.getScreenWidth(context) * 0.04,
                     onTab: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Screen11()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddReviewPage()));
                     },
                     radius: 10,
                     addIcon: true,
                     width: GetScreenSize.getScreenWidth(context) * 0.4,
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     height: 50,
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                   )
                 ],
               ),
@@ -106,7 +108,7 @@ class Screen10 extends StatelessWidget {
                       return CustomReviewBar(object: list[index]);
                     },
                     separatorBuilder: (context, index) {
-                      return Divider();
+                      return const Divider();
                     },
                   ))
             ],

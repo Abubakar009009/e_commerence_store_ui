@@ -2,21 +2,20 @@ import 'package:e_commerence_store_ui/utils/app_strings.dart';
 import 'package:e_commerence_store_ui/utils/common_functions.dart';
 
 import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/media_query.dart';
 import '../widgets/back_custom_middle.dart';
 
-class Screen11 extends StatefulWidget {
-  const Screen11({super.key});
+class AddReviewPage extends StatefulWidget {
+  const AddReviewPage({super.key});
 
   @override
-  State<Screen11> createState() => _Screen11State();
+  State<AddReviewPage> createState() => _AddReviewPageState();
 }
 
-class _Screen11State extends State<Screen11> {
+class _AddReviewPageState extends State<AddReviewPage> {
   double _currentvalue = 0;
   @override
   Widget build(BuildContext context) {
@@ -48,8 +47,8 @@ class _Screen11State extends State<Screen11> {
                               GetScreenSize.getScreenWidth(context) * 0.060,
                           fontWeight: FontWeight.w600),
                     ),
-                    Expanded(child: SizedBox()),
-                    Icon(
+                    const Expanded(child: SizedBox()),
+                    const Icon(
                       Icons.arrow_back,
                       color: Colors.transparent,
                     ),
@@ -80,11 +79,11 @@ class _Screen11State extends State<Screen11> {
                         decoration: InputDecoration(
                           hintText: AppStrings.nameHint, // Placeholder text
                           hintStyle: TextStyle(color: AppColors.appGreyText),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                             borderSide:
                                 BorderSide.none, // No border when focused
                           ),
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: const UnderlineInputBorder(
                             borderSide:
                                 BorderSide.none, // No border when not focused
                           ),
@@ -110,16 +109,16 @@ class _Screen11State extends State<Screen11> {
                       color: AppColors.appGreyBackground,
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     child: TextField(
                       maxLines: 20,
                       style: TextStyle(
                           color: AppColors.appBlackText), // Set the text color
                       decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
+                        focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide.none, // No border when focused
                         ),
-                        enabledBorder: UnderlineInputBorder(
+                        enabledBorder: const UnderlineInputBorder(
                           borderSide:
                               BorderSide.none, // No border when not focused
                         ),

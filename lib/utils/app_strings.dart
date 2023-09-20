@@ -129,7 +129,7 @@ class AppStrings {
   static String verifiedProfile = 'Verified Profile';
   static String darkMode = 'Dark Mode';
   static String accountInfo = 'Account Information';
-  static String orderInfo = 'Order';
+  static String orderInfo = 'Past Orders';
   static String cardsInfo = 'My Cards';
   static String wishlistInfo = 'Wishlist';
   static String settingsInfo = 'Settings';

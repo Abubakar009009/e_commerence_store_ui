@@ -1,24 +1,22 @@
 import 'package:e_commerence_store_ui/utils/common_functions.dart';
-import 'package:e_commerence_store_ui/views/screen_13.dart/textfield.dart';
-import 'package:e_commerence_store_ui/views/screen_15.dart';
+import 'package:e_commerence_store_ui/views/address_page/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/credit_card_widget.dart';
 
-import '../utils/app_colors.dart';
-import '../utils/app_strings.dart';
-import '../utils/media_query.dart';
-import '../widgets/back_custom_middle.dart';
-import '../widgets/custom_bottom_buttons.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/media_query.dart';
+import '../../widgets/back_custom_middle.dart';
+import '../../widgets/custom_bottom_buttons.dart';
 
-class Screen14 extends StatefulWidget {
-  const Screen14({super.key});
+class AddressPage extends StatefulWidget {
+  const AddressPage({super.key});
 
   @override
-  State<Screen14> createState() => _Screen14State();
+  State<AddressPage> createState() => _AddressPageState();
 }
 
-class _Screen14State extends State<Screen14> {
+class _AddressPageState extends State<AddressPage> {
   bool forIos = true;
   @override
   Widget build(BuildContext context) {
@@ -27,12 +25,13 @@ class _Screen14State extends State<Screen14> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(
-                top: GetScreenSize.getScreenWidth(context) * 0.17,
-                left: GetScreenSize.getScreenWidth(context) * 0.05,
-                right: GetScreenSize.getScreenWidth(context) * 0.05),
+        // resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: EdgeInsets.only(
+              top: GetScreenSize.getScreenWidth(context) * 0.17,
+              left: GetScreenSize.getScreenWidth(context) * 0.05,
+              right: GetScreenSize.getScreenWidth(context) * 0.05),
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -42,7 +41,7 @@ class _Screen14State extends State<Screen14> {
                     const BackCustomMiddle(),
                     const Expanded(child: SizedBox()),
                     Text(
-                      AppStrings.payment,
+                      AppStrings.address,
                       style: TextStyle(
                           color: AppColors.appBlackText,
                           fontSize:
@@ -59,62 +58,8 @@ class _Screen14State extends State<Screen14> {
                 SizedBox(
                   height: GetScreenSize.getScreenWidth(context) * 0.05,
                 ),
-                CreditCardWidget(
-                  width: GetScreenSize.getScreenWidth(context) * 0.9,
-                  cardNumber:
-                      '4242 4242 4242 4242', // Replace with the actual card number
-                  expiryDate: '12/24', // Replace with the actual expiry date
-                  cardHolderName:
-                      'John Doe', // Replace with the actual cardholder name
-                  cvvCode: '123', // Replace with the actual CVV
-                  showBackView: false,
-                  onCreditCardWidgetChange:
-                      (CreditCardBrand) {}, // To show the card's back view
-                ),
-                SizedBox(
-                  height: GetScreenSize.getScreenWidth(context) * 0.05,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Screen15()));
-                  },
-                  child: Container(
-                      height: 60,
-                      width: GetScreenSize.getScreenWidth(context) * 0.9,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.appPurpleColor),
-                        color: AppColors.appGreyBackground,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Center(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add_circle_outline,
-                            color: AppColors.appPurpleColor,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            AppStrings.addNewCard,
-                            style: TextStyle(
-                                fontSize:
-                                    GetScreenSize.getScreenWidth(context) *
-                                        0.04,
-                                color: AppColors.appPurpleColor,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ))),
-                ),
-                SizedBox(
-                  height: GetScreenSize.getScreenWidth(context) * 0.05,
-                ),
                 Text(
-                  AppStrings.cardOwner,
+                  AppStrings.name01,
                   style: TextStyle(
                       fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
                       fontWeight: FontWeight.w500),
@@ -124,23 +69,7 @@ class _Screen14State extends State<Screen14> {
                 ),
                 TextFieldCustom(
                   width: GetScreenSize.getScreenWidth(context) * 0.9,
-                  hintText: AppStrings.nameHint,
-                ),
-                SizedBox(
-                  height: GetScreenSize.getScreenWidth(context) * 0.05,
-                ),
-                Text(
-                  AppStrings.cardNumber,
-                  style: TextStyle(
-                      fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
-                      fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: GetScreenSize.getScreenWidth(context) * 0.05,
-                ),
-                TextFieldCustom(
-                  width: GetScreenSize.getScreenWidth(context) * 0.9,
-                  hintText: AppStrings.cardHint,
+                  hintText: AppStrings.namehint,
                 ),
                 SizedBox(
                   height: GetScreenSize.getScreenWidth(context) * 0.05,
@@ -152,7 +81,7 @@ class _Screen14State extends State<Screen14> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          AppStrings.cardExpire,
+                          AppStrings.country,
                           style: TextStyle(
                               fontSize:
                                   GetScreenSize.getScreenWidth(context) * 0.045,
@@ -163,7 +92,7 @@ class _Screen14State extends State<Screen14> {
                         ),
                         TextFieldCustom(
                           width: GetScreenSize.getScreenWidth(context) * 0.4,
-                          hintText: AppStrings.cardExpireHint,
+                          hintText: AppStrings.countryhint,
                         )
                       ],
                     ),
@@ -171,7 +100,7 @@ class _Screen14State extends State<Screen14> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          AppStrings.cardCvv,
+                          AppStrings.city,
                           style: TextStyle(
                               fontSize:
                                   GetScreenSize.getScreenWidth(context) * 0.045,
@@ -182,7 +111,7 @@ class _Screen14State extends State<Screen14> {
                         ),
                         TextFieldCustom(
                           width: GetScreenSize.getScreenWidth(context) * 0.4,
-                          hintText: AppStrings.cardCvvHint,
+                          hintText: AppStrings.cityName,
                         )
                       ],
                     )
@@ -191,11 +120,41 @@ class _Screen14State extends State<Screen14> {
                 SizedBox(
                   height: GetScreenSize.getScreenWidth(context) * 0.05,
                 ),
+                Text(
+                  AppStrings.phoneNumber,
+                  style: TextStyle(
+                      fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: GetScreenSize.getScreenWidth(context) * 0.05,
+                ),
+                TextFieldCustom(
+                    width: GetScreenSize.getScreenWidth(context) * 0.9,
+                    hintText: AppStrings.phoneNumberHint),
+                SizedBox(
+                  height: GetScreenSize.getScreenWidth(context) * 0.05,
+                ),
+                Text(
+                  AppStrings.address,
+                  style: TextStyle(
+                      fontSize: GetScreenSize.getScreenWidth(context) * 0.045,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: GetScreenSize.getScreenWidth(context) * 0.05,
+                ),
+                TextFieldCustom(
+                    width: GetScreenSize.getScreenWidth(context) * 0.9,
+                    hintText: AppStrings.addressText),
+                SizedBox(
+                  height: GetScreenSize.getScreenWidth(context) * 0.05,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppStrings.saveCardInfo,
+                      AppStrings.saveAsPrimary,
                       style: TextStyle(
                           fontSize:
                               GetScreenSize.getScreenWidth(context) * 0.045,
@@ -210,18 +169,18 @@ class _Screen14State extends State<Screen14> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: GetScreenSize.getScreenWidth(context) * 0.05,
-                ),
               ],
             ),
           ),
         ),
         bottomNavigationBar: CustomBottomButton(
             onTab: () {
-              CommonFunctions.cardAdded(context);
+              CommonFunctions.addressAdded(context);
+
+              // Navigator.push(
+              //     context, MaterialPageRoute(builder: (context) => Screen14()));
             },
-            text: AppStrings.saveCard),
+            text: AppStrings.saveAddress),
       ),
     );
   }

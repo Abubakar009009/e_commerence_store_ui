@@ -11,8 +11,8 @@ import '../utils/app_colors.dart';
 import '../utils/app_strings.dart';
 import '../widgets/back_custom_middle.dart';
 
-class Screen16 extends StatelessWidget {
-  const Screen16({super.key});
+class OrderConfirmation extends StatelessWidget {
+  const OrderConfirmation({super.key});
 
   @override
   Widget build(BuildContext context) {

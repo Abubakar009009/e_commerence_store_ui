@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../firebase_admin/model/order_model.dart';
 import '../models/orders_model.dart';
-import '../views/screen_16.dart';
+import '../views/order_confirmation.dart';
 
 class SendOrder {
   static Future<void> placeOrder(
@@ -46,7 +46,7 @@ class SendOrder {
         await getOrders();
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Screen16()),
+          MaterialPageRoute(builder: (context) => OrderConfirmation()),
         );
       } else {
         // Handle the case where the user is not logged in.

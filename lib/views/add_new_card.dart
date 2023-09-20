@@ -1,6 +1,6 @@
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
 import 'package:e_commerence_store_ui/utils/common_functions.dart';
-import 'package:e_commerence_store_ui/views/screen_13.dart/textfield.dart';
+import 'package:e_commerence_store_ui/views/address_page/textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_assets.dart';
@@ -8,14 +8,14 @@ import '../utils/app_colors.dart';
 import '../utils/media_query.dart';
 import '../widgets/custom_button.dart';
 
-class Screen15 extends StatefulWidget {
-  const Screen15({super.key});
+class AddNewCard extends StatefulWidget {
+  const AddNewCard({super.key});
 
   @override
-  _Screen15State createState() => _Screen15State();
+  _AddNewCardState createState() => _AddNewCardState();
 }
 
-class _Screen15State extends State<Screen15> {
+class _AddNewCardState extends State<AddNewCard> {
   int selectedContainerIndex = 0;
   void selectContainer(int index) {
     setState(() {
@@ -52,7 +52,7 @@ class _Screen15State extends State<Screen15> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Expanded(child: SizedBox()),
+                    const Expanded(child: SizedBox()),
                   ],
                 ),
                 SizedBox(
@@ -203,7 +203,7 @@ class _Screen15State extends State<Screen15> {
                                   GetScreenSize.getScreenWidth(context) * 0.045,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFieldCustom(
@@ -222,7 +222,7 @@ class _Screen15State extends State<Screen15> {
                                   GetScreenSize.getScreenWidth(context) * 0.045,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFieldCustom(
@@ -233,7 +233,7 @@ class _Screen15State extends State<Screen15> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 CustomTextButton(

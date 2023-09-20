@@ -19,7 +19,7 @@ class ProductWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: GetScreenSize.getScreenWidth(context) * 0.39,
+            height: GetScreenSize.getScreenWidth(context) * 0.52,
             width: GetScreenSize.getScreenWidth(context) * 0.45,
             child: Stack(
               children: [

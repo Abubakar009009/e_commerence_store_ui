@@ -1,13 +1,13 @@
 import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
 import 'package:e_commerence_store_ui/utils/app_strings.dart';
-import 'package:e_commerence_store_ui/views/screen_2.dart';
+import 'package:e_commerence_store_ui/views/signup_option.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_button.dart';
 
-class Screen1 extends StatelessWidget {
-  const Screen1({super.key});
+class GenderSelection extends StatelessWidget {
+  const GenderSelection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class Screen1 extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Screen2()));
+                              builder: (context) => const SignupOption()));
                     },
                     child: Text(
                       AppStrings.skip,

@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_final_fields, use_key_in_widget_constructors
 
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
-import 'package:e_commerence_store_ui/views/screen_12.dart';
-import 'package:e_commerence_store_ui/views/screen_15.dart';
-import 'package:e_commerence_store_ui/views/screen_17_drawer.dart';
-import 'package:e_commerence_store_ui/views/screen_19.dart';
-import 'package:e_commerence_store_ui/views/screen_8.dart';
+import 'package:e_commerence_store_ui/views/cart_page.dart';
+import 'package:e_commerence_store_ui/views/add_new_card.dart';
+import 'package:e_commerence_store_ui/views/home_drawer.dart';
+import 'package:e_commerence_store_ui/views/wishlist_screen.dart';
+import 'package:e_commerence_store_ui/views/home_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -17,10 +17,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    const Screen8(),
-    const Screen19(),
-    const Screen15(),
-    const Screen12(),
+    const HomePage(),
+    const WishlistScreen(),
+    const AddNewCard(),
+    const CartPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return WillPopScope(
       onWillPop: () => _onBackButtonPressed(context),
       child: Scaffold(
-        drawer: const Screen17Drawer(),
+        drawer: const HomeDrawer(),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[

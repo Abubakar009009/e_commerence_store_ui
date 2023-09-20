@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerence_store_ui/utils/app_constants.dart';
+import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
+import 'package:e_commerence_store_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -38,12 +40,24 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.AppWhiteColor,
-        title: const Text(
-          'Orders',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => BottomNavBar()),
+                (route) => false);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColors.appPurpleColor,
+          ),
         ),
-        centerTitle: true,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        title: const Text(
+          'Past Orders',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        ),
       ),
       body: ListView.builder(
         itemCount: AppConstants.orderList.length,
@@ -52,26 +66,58 @@ class _OrdersScreenState extends State<OrdersScreen> {
           return Padding(
             padding:
                 const EdgeInsets.only(left: 8.0, right: 8, top: 10, bottom: 10),
-            child: Card(
-              elevation: 2,
-              color: Colors.grey[200],
-              shadowColor: AppColors.appGreyBackground,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(width: 0.1, color: AppColors.appGreyText),
+              ),
+              //  elevation: 2,
+              //color: Colors.grey[200],
+              // shadowColor: AppColors.appGreyBackground,
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20.0, right: 8, top: 10, bottom: 10),
+                    left: 20.0, right: 8, top: 0, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 15,
                     ),
-                    const Text(
-                      'Order Details ',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Order Details',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              // const TextSpan(
+                              //   text: 'Total : ',
+                              //   style: TextStyle(
+                              //     font
+                              //     fontWeight: FontWeight.bold,
+                              //     color: Colors.black,
+                              //   ),
+                              // ),
+                              TextSpan(
+                                text: '\$${userData.total}',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
+                    // Divider(),
                     const SizedBox(
                       height: 10,
                     ),
@@ -111,11 +157,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                             ),
                                           ),
                                           errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         )),
                                   ),
                                   title: Text(
-                                    '${product.category}',
+                                    product.category,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -124,7 +170,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'Price:',
+                                          text: 'Price: ',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             color: AppColors
@@ -133,7 +179,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                         ),
                                         TextSpan(
                                           text: '\$${product.price}',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             color: Colors
                                                 .black, // Color for the count
@@ -142,13 +188,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                       ],
                                     ),
                                   )),
-                              SizedBox(
-                                height: 5,
-                              )
+                              //  Divider()
                             ],
                           );
                         } else {
-                          return Text('This is not your product');
+                          return const Text('This is not your product');
                         }
                       },
                     ),
@@ -166,7 +210,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: '${userData.status}',
+                            text: userData.status,
                             style: const TextStyle(
                               color: Colors.black,
                             ),
@@ -197,52 +241,23 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          const TextSpan(
-                            text: 'SubTotal : ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '\$${userData.subTotal}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          const TextSpan(
-                            text: 'Total : ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '\$${userData.total}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    CustomTextButton(
+                        onTab: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BottomNavBar()),
+                              (route) => false);
+                        },
+                        padding: const EdgeInsets.all(8),
+                        // width: 200,
+                        buttonText: 'Select Items to reorder',
+                        // height: 50,
+                        buttonColor: AppColors.appPurpleColor,
+                        radius: 10,
+                        fontSize: 17)
                   ],
                 ),
               ),

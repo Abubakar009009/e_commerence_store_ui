@@ -1,16 +1,15 @@
-import 'package:e_commerence_store_ui/utils/app_assets.dart';
 import 'package:e_commerence_store_ui/utils/app_colors.dart';
-import 'package:e_commerence_store_ui/utils/app_strings.dart';
-import 'package:e_commerence_store_ui/views/screen_6.dart';
-import 'package:e_commerence_store_ui/widgets/custom_bottom_buttons.dart';
-import 'package:e_commerence_store_ui/widgets/custom_textfield.dart';
+import 'package:e_commerence_store_ui/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/app_strings.dart';
 import '../utils/media_query.dart';
 import '../widgets/back_custom.dart';
+import '../widgets/custom_bottom_buttons.dart';
+import '../widgets/custom_textfield.dart';
 
-class Screen5 extends StatelessWidget {
-  const Screen5({super.key});
+class NewPassword extends StatelessWidget {
+  const NewPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +22,11 @@ class Screen5 extends StatelessWidget {
         body: SingleChildScrollView(
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
+            //color: Colors.red,
             child: Padding(
               padding: EdgeInsets.only(
-                  top: GetScreenSize.getScreenWidth(context) * 0.17),
+                top: GetScreenSize.getScreenWidth(context) * 0.17,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,39 +40,49 @@ class Screen5 extends StatelessWidget {
                       children: [
                         Center(
                             child: Text(
-                          AppStrings.forgotPassword,
+                          AppStrings.newPassword,
                           style: TextStyle(
                               fontSize:
                                   GetScreenSize.getScreenWidth(context) * 0.075,
-                              color: AppColors.appBlackText,
                               fontWeight: FontWeight.w600),
                         )),
                         SizedBox(
-                          height: GetScreenSize.getScreenWidth(context) * 0.1,
-                        ),
-                        Image.asset(
-                          AppAssets.forgotscreen,
-                          height: GetScreenSize.getScreenWidth(context) * 0.5,
-                          width: GetScreenSize.getScreenWidth(context) * 0.8,
-                        ),
-                        SizedBox(
-                          height: GetScreenSize.getScreenWidth(context) * 0.1,
+                          height: GetScreenSize.getScreenWidth(context) * 0.21,
                         ),
                         CustomTextField(
-                            heading: AppStrings.emailheading,
-                            fieldType: TextFieldType.Email,
-                            hinttext: AppStrings.emailhint),
+                            heading: AppStrings.passwordheading,
+                            fieldType: TextFieldType.Password,
+                            hinttext: AppStrings.passwordhint),
                         SizedBox(
-                          height: GetScreenSize.getScreenWidth(context) * 0.3,
+                          height: GetScreenSize.getScreenWidth(context) * 0.10,
+                        ),
+                        CustomTextField(
+                            heading: 'Confirm Password',
+                            fieldType: TextFieldType.Password,
+                            hinttext: 'Confirm Password'),
+                        SizedBox(
+                          height: GetScreenSize.getScreenWidth(context) * 0.05,
+                        ),
+                        SizedBox(
+                          height: GetScreenSize.getScreenWidth(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: GetScreenSize.getScreenWidth(context) * 0.5,
                         ),
                         Text(
-                          AppStrings.emailValidation,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColors.appGreyText),
-                        ),
+                          AppStrings.newPasswordtext,
+                          style: TextStyle(
+                            fontSize:
+                                GetScreenSize.getScreenWidth(context) * 0.035,
+                            color: AppColors.appGreyText,
+
+                            // Other properties you want to customize
+                          ),
+                        )
                       ],
                     ),
                   ),
+                  const Spacer(),
                 ],
               ),
             ),
@@ -80,9 +91,9 @@ class Screen5 extends StatelessWidget {
         bottomSheet: CustomBottomButton(
             onTab: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Screen6()));
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
             },
-            text: AppStrings.confirmmail),
+            text: AppStrings.resetPassword),
       ),
     );
   }

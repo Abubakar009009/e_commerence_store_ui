@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerence_store_ui/providers/login_signup_state_provider.dart';
 import 'package:e_commerence_store_ui/views/bottomnav_bar.dart';
-import 'package:e_commerence_store_ui/views/screen_4.dart';
+import 'package:e_commerence_store_ui/views/login_screen.dart';
 import 'package:e_commerence_store_ui/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class LoginSignup {
       String documentId = newDocumentRef.id;
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Screen4()));
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
       context.read<LoginSignupStateProvider>().signupDone();
 
       return user;
@@ -60,23 +60,23 @@ class LoginSignup {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      //  print('----------------error');
-      User? user = userCredential.user;
 
-      //  print('-------------------------------signin done');
+      User? user = userCredential.user;
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const CheckUserType()));
 
       return user;
     } catch (e) {
-      print('there is an exception');
-      print(e);
+      //  print('there is an exception');
+      //  print(e);
       context.read<LoginSignupStateProvider>().logginDone();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Error! Email and Password incorrect'),
+          content: Text('Incorrect! Email and Password'),
           duration: Duration(seconds: 3),
         ),
       );
-      print("Error during sign-in: $e");
+      //   print("Error during sign-in: $e");
       return null;
     }
   }

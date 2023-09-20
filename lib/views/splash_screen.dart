@@ -1,6 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerence_store_ui/views/check_user_type.dart';
 import 'package:e_commerence_store_ui/views/no_internet.dart';
-import 'package:e_commerence_store_ui/views/screen_1.dart';
+import 'package:e_commerence_store_ui/views/gender_selection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -42,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         // User is not logged in, navigate to Screen4.
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const Screen1()),
+          MaterialPageRoute(builder: (context) => const GenderSelection()),
         );
       }
     }
@@ -50,6 +52,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(child: CircularProgressIndicator()),
+    );
   }
 }
